@@ -54,17 +54,22 @@
               <item name="ProjetAndroid" type="b2602c69:ProjectViewProjectNode" />
               <item name="ProjetAndroid" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="ProjetAndroid" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ProjetAndroid" type="462c0819:PsiDirectoryNode" />
-              <item name=".idea" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
       <pane id="PackagesPane" />
-      <pane id="Scope" />
+      <pane id="Scope">
+        <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
+          <expand>
+            <path>
+              <item name="ProjetAndroid" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -156,7 +161,7 @@
       <window_info id="Structure" side_tool="true" />
       <window_info id="Image Layers" />
       <window_info id="Designer" />
-      <window_info id="Resources Explorer" />
+      <window_info id="Resources Explorer" weight="0.32953104" />
       <window_info id="Capture Tool" />
       <window_info id="Favorites" side_tool="true" />
       <window_info id="Captures" order="0" weight="0.25" />
