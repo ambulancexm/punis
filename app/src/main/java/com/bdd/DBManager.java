@@ -89,7 +89,7 @@ public class DBManager extends SQLiteOpenHelper {
         public static final String CREATE_TABLE = "CREATE TABLE IF NOT EXISTS " + TABLE_NAME + " ("
                 + ID + " INTEGER primary key, "
                 + TYPE + " VARCHAR NOT NULL, "
-                + DATE + " DATE NOT NULL, "
+                + DATE + " VARCHAR NOT NULL, "
                 + LIEU + " TEXT, "
                 + DESCRIPTION + " TEXT, "
                 + FORMATEUR_ID + " INTEGER NOT NULL, " +

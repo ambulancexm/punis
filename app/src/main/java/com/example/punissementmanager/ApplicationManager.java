@@ -108,8 +108,6 @@ public class ApplicationManager {
 
         content.put(DBManager.DBPunissement.DATE, ConvertirDateEnString(punissement.getDate()));
 
-        Log.e("verif date", ConvertirDateEnString(punissement.getDate()));
-
         dbManager.ajouterContentValues(DBManager.DBPunissement.TABLE_NAME, content);
     }
 
