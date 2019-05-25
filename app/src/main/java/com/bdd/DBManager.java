@@ -10,6 +10,7 @@ import android.provider.BaseColumns;
 import android.util.Log;
 
 import com.example.punissementmanager.ApplicationManager;
+import com.objetsjava.Stagiaire;
 
 public class DBManager extends SQLiteOpenHelper {
 
@@ -75,6 +76,27 @@ public class DBManager extends SQLiteOpenHelper {
                 + TELEPHONE + " VARCHAR, "
                 + SESSION_ID + " INTEGER NOT NULL, " +
                 "CONSTRAINT fk_session FOREIGN KEY(" + DBSession.ID +") REFERENCES " + DBSession.TABLE_NAME +"(" + DBSession.ID + ")); ";
+
+        public void insertStagiaire(Stagiaire pStagiaire) {
+
+            ContentValues content = new ContentValues();
+            content.put(ID, pStagiaire.getId());
+            content.put(NOM, pStagiaire.getNom());
+            content.put(PRENOM,pStagiaire.getPrenom());
+            content.put(PHOTO,pStagiaire.getImage());
+            content.put(EMAIL,pStagiaire.getEmail());
+            content.put(TELEPHONE,pStagiaire.getTelephone());
+            content.put(SESSION_ID,pStagiaire.getSession_id());
+
+
+
+            // Ici j'utilise insertOrThrow qui me permet de dégager une exception si l'insert ne s'est pas bien passé.
+            try {
+                dbWrite.insertOrThrow(TABLE_CITY_NAME, null, content);
+            } catch(SQLException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     public static class DBPunissement implements BaseColumns {
@@ -136,5 +158,7 @@ public class DBManager extends SQLiteOpenHelper {
                 "CONSTRAINT fk_punissement FOREIGN KEY(" + DBPunissement.ID + ") REFERENCES " + DBPunissement.TABLE_NAME + "(" + DBPunissement.ID + "), " +
                 "CONSTRAINT fk_stagiaire FOREIGN KEY(" + DBStagiaire.ID + ") REFERENCES " + DBStagiaire.TABLE_NAME + "(" + DBStagiaire.ID + ")); ";
     }
+
+
 }
 

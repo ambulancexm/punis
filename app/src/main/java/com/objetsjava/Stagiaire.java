@@ -48,7 +48,7 @@ public class Stagiaire implements Serializable {
 
     // Fonction d'ajout d'une capital qui appel la fonction ajout du helper
     public static void addCapital(Stagiaire pStagiaire) {
-        dbManager.insertCity(pStagiaire);
+        dbManager.insertStagiaire(pStagiaire);
     }
 
     // Fonction de suppression d'une capitale qui appelle la fonction suppression du helper
