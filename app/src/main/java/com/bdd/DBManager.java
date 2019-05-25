@@ -14,7 +14,7 @@ import com.objetsjava.Stagiaire;
 
 public class DBManager extends SQLiteOpenHelper {
 
-    private SQLiteDatabase dbWrite;
+    private static SQLiteDatabase dbWrite;
     private SQLiteDatabase dbRead = this.getReadableDatabase();
 
     public static final int DATABASE_VERSION = 1;
@@ -54,6 +54,26 @@ public class DBManager extends SQLiteOpenHelper {
         return res;
     }
 
+   /* public void insertStagiaire(Stagiaire pStagiaire) {
+        ContentValues content = new ContentValues();
+            content.put(ID, pStagiaire.getId());
+            content.put(NOM, pStagiaire.getNom());
+            content.put(PRENOM,pStagiaire.getPrenom());
+            content.put(PHOTO,pStagiaire.getImage());
+            content.put(EMAIL,pStagiaire.getEmail());
+            content.put(TELEPHONE,pStagiaire.getTelephone());
+            content.put(SESSION_ID,pStagiaire.getSession_id());
+
+
+
+            // Ici j'utilise insertOrThrow qui me permet de dégager une exception si l'insert ne s'est pas bien passé.
+            try {
+                dbWrite.insertOrThrow(TABLE_NAME, null, content);
+            } catch(SQLException e) {
+                System.out.println(e.getMessage());
+            }
+    }*/
+
     // classes internes pour stocker les commandes sql dans des constantes
 
     // constantes de la table stagiaire
@@ -77,7 +97,7 @@ public class DBManager extends SQLiteOpenHelper {
                 + SESSION_ID + " INTEGER NOT NULL, " +
                 "CONSTRAINT fk_session FOREIGN KEY(" + DBSession.ID +") REFERENCES " + DBSession.TABLE_NAME +"(" + DBSession.ID + ")); ";
 
-        public void insertStagiaire(Stagiaire pStagiaire) {
+       /* public static void insertStagiaire(Stagiaire pStagiaire) {
 
             ContentValues content = new ContentValues();
             content.put(ID, pStagiaire.getId());
@@ -92,11 +112,11 @@ public class DBManager extends SQLiteOpenHelper {
 
             // Ici j'utilise insertOrThrow qui me permet de dégager une exception si l'insert ne s'est pas bien passé.
             try {
-                dbWrite.insertOrThrow(TABLE_CITY_NAME, null, content);
+                dbWrite.insertOrThrow(TABLE_NAME, null, content);
             } catch(SQLException e) {
                 System.out.println(e.getMessage());
             }
-        }
+        }*/
     }
 
     public static class DBPunissement implements BaseColumns {
