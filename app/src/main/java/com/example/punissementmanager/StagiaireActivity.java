@@ -18,9 +18,7 @@ public class StagiaireActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-
         getMenuInflater().inflate(R.menu.menu_stagiaire, menu);
-
         return true;
     }
 

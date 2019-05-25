@@ -24,13 +24,15 @@ public class ConnexionActivity extends AppCompatActivity {
     }
 
     public void onRegisterButton(View view){
-        Intent RegisterView = new Intent(ConnexionActivity.this,RegisterActivity.class);
+        Intent RegisterView = new Intent(this,StagiaireActivity.class);
         startActivity(RegisterView);
     }
 
 
-    public void onLoginConnection(){
 
+
+    public void onLoginConnection(View view) {
+        Intent RegisterView = new Intent(this,StagiaireActivity.class);
+        startActivity(RegisterView);
     }
-
 }
