@@ -28,12 +28,7 @@ public class CalendarActivity extends AppCompatActivity {
                 startActivity(punissement);
             }
 
-           //public void connection(View view) {
 
-              //  Intent Punissement;
-             //  Punissement = new Intent(this, PunissementActivity.class);
-             //  startActivity(Punissement);
-          // }
         });
     }
 }
