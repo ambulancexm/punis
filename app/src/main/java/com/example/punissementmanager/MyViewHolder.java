@@ -6,6 +6,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.objetsjava.Stagiaire;
+
 public class MyViewHolder extends RecyclerView.ViewHolder {
 
     private TextView textViewView;
@@ -16,7 +18,7 @@ public class MyViewHolder extends RecyclerView.ViewHolder {
     }
 
     //puis ajouter une fonction pour remplir la cellule en fonction d'un CapitalObject
-    public void bind(******obgjet**** StagiaireObject){
+    public void bind(Stagiaire StagiaireObject){
         textViewView.setText(StagiaireObject.getText());
 
 
