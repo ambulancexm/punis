@@ -53,11 +53,11 @@ public class Stagiaire implements Serializable {
 
     // Fonction de suppression d'une capitale qui appelle la fonction suppression du helper
     public static void deleteCapital(Stagiaire pStagiaire) {
-        dbManager.deleteCity(pStagiaire);
+        dbManager.deleteStagiaire(pStagiaire);
     }
 
     // Fonction de MAJ d'une capitale qui appelle la fonction suppression du helper
-    public static void updateCapital(Stagiaire pStagiaire) { dbManager.updateCity(pStagiaire);}
+    public static void updateCapital(Stagiaire pStagiaire) { dbManager.updateStagiaire(pStagiaire);}
 
     public int getId() {
         return id;
