@@ -16,8 +16,8 @@ public class MyViewHolder extends RecyclerView.ViewHolder {
     }
 
     //puis ajouter une fonction pour remplir la cellule en fonction d'un CapitalObject
-    public void bind(CapitalObject capitalObject){
-        textViewView.setText(capitalObject.getText());
+    public void bind(******obgjet**** StagiaireObject){
+        textViewView.setText(StagiaireObject.getText());
 
 
     }
