@@ -10,7 +10,9 @@ import android.provider.BaseColumns;
 import android.util.Log;
 
 import com.example.punissementmanager.ApplicationManager;
+import com.objetsjava.Formateur;
 
+import java.text.Normalizer;
 import java.util.Date;
 
 public class DBManager extends SQLiteOpenHelper {
@@ -34,7 +36,6 @@ public class DBManager extends SQLiteOpenHelper {
         db.execSQL(DBPunissement.CREATE_TABLE);
         db.execSQL(DBStagiaire.CREATE_TABLE);
         db.execSQL(DBStagiairesPunis.CREATE_TABLE);
-        InitialiserDonnees();
     }
 
     @Override
@@ -146,9 +147,10 @@ public class DBManager extends SQLiteOpenHelper {
                 "CONSTRAINT fk_stagiaire FOREIGN KEY(" + DBStagiaire.ID + ") REFERENCES " + DBStagiaire.TABLE_NAME + "(" + DBStagiaire.ID + ")); ";
     }
 
-    private void InitialiserDonnees() {
+    public void InitialiserDonnees() {
+
         ContentValues content = new ContentValues();
-        
+
         content.put(DBFormateur.USERNAME, "theboss");
         content.put(DBFormateur.PRENOM, "Marc");
         content.put(DBFormateur.NOM, "Abeille");

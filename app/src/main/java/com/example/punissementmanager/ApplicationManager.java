@@ -36,7 +36,10 @@ public class ApplicationManager {
     }
 
     public static void InitialiserApplication (Context context){
-        dbManager = new DBManager(context);
+        if (dbManager == null) {
+            dbManager = new DBManager(context);
+            dbManager.InitialiserDonnees();
+        }
     }
 
     public DBManager getDbManager() {return dbManager;}

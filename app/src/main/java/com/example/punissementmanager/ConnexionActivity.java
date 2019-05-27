@@ -19,7 +19,6 @@ public class ConnexionActivity extends AppCompatActivity {
         setContentView(R.layout.activity_connexion);
 
         ApplicationManager.InitialiserApplication(this);
-        //ApplicationManager.getInstance().Test();
 
         Username = (EditText) findViewById(R.id.Username);
         Password = (EditText) findViewById(R.id.Password);
