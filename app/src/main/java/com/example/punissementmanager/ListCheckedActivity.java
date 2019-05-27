@@ -12,13 +12,13 @@ import com.objetsjava.Stagiaire;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
-public class ListActivity extends AppCompatActivity {
+public class ListCheckedActivity extends AppCompatActivity {
 
     private LinkedHashMap<String, GroupInfo> team = new LinkedHashMap<String, GroupInfo>();
     private ArrayList<GroupInfo> deptList = new ArrayList<GroupInfo>();
 
     private CustomAdapterStagiaire listAdapter;
-    private ExpandableListView simpleExpandableListView;
+    private ExpandableListView ExpandableListViewChecked;
 
     private static final String stagiaire=null;
     String[] tab;
@@ -29,43 +29,43 @@ public class ListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_list);
 
         // add data for displaying in expandable list view
-    loadData();
+        loadData();
 
-    //get reference of the ExpandableListView
-    simpleExpandableListView = (ExpandableListView) findViewById(R.id.simpleExpandableListView);
-    // create the adapter by passing your ArrayList data
-    listAdapter = new CustomAdapterStagiaire(ListActivity.this, deptList);
-    // attach the adapter to the expandable list view
-        simpleExpandableListView.setAdapter(listAdapter);
+        //get reference of the ExpandableListView
+        ExpandableListViewChecked = (ExpandableListView) findViewById(R.id.ExpandableListViewChecked);
+        // create the adapter by passing your ArrayList data
+        listAdapter = new CustomAdapterStagiaire(ListCheckedActivity.this, deptList);
+        // attach the adapter to the expandable list view
+        ExpandableListViewChecked.setAdapter(listAdapter);
 
-    // setOnChildClickListener listener for child row click
-        simpleExpandableListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
-        @Override
-        public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
-            //get the group header
-            GroupInfo headerInfo = deptList.get(groupPosition);
-            //get the child info
-            ChildInfo detailInfo = headerInfo.getPlayerName().get(childPosition);
-            //display it or do something with it
+        // setOnChildClickListener listener for child row click
+        ExpandableListViewChecked.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
+            @Override
+            public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
+                //get the group header
+                GroupInfo headerInfo = deptList.get(groupPosition);
+                //get the child info
+                ChildInfo detailInfo = headerInfo.getPlayerName().get(childPosition);
+                //display it or do something with it
             /*Toast.makeText(getBaseContext(), " Team And Player :: " + headerInfo.getName()
                     + "/" + detailInfo.getName(), Toast.LENGTH_LONG).show();*/
-            Intent DetailStagiaire = new Intent(ListActivity.this, StagiaireActivity.class);
-            DetailStagiaire.putExtra(stagiaire, tab[i]);
-            startActivity(DetailStagiaire);
-            return false;
-        }
-    });
-    // setOnGroupClickListener listener for group heading click
-        simpleExpandableListView.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
-        @Override
-        public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition, long id) {
-            //get the group header
-            GroupInfo headerInfo = deptList.get(groupPosition);
+                Intent DetailStagiaire = new Intent(ListCheckedActivity.this, StagiaireActivity.class);
+                DetailStagiaire.putExtra(stagiaire, tab[i]);
+                startActivity(DetailStagiaire);
+                return false;
+            }
+        });
+        // setOnGroupClickListener listener for group heading click
+        ExpandableListViewChecked.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
+            @Override
+            public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition, long id) {
+                //get the group header
+                GroupInfo headerInfo = deptList.get(groupPosition);
 
-            return false;
-        }
-    });
-}
+                return false;
+            }
+        });
+    }
 
     // load some initial data into out list
     private void loadData() {
@@ -78,15 +78,6 @@ public class ListActivity extends AppCompatActivity {
                 addProduct(S.getNom(),stag.getPrenom() + " " + stag.getNom());
             }
         }
-
-        /*addProduct("Développeur", "Thomas Béréziat");
-        addProduct("Développeur", "Pauline Cannillo");
-        addProduct("Développeur", "Sonia Chargé");
-        addProduct("Développeur", "Nicolas Rault");
-
-        addProduct("Concepteur", "Thierry Ferreira");
-        addProduct("Concepteur", "Cyril Van Loo");*/
-
     }
 
     // here we maintain team and player names
@@ -121,6 +112,5 @@ public class ListActivity extends AppCompatActivity {
         groupPosition = deptList.indexOf(headerInfo);
         return groupPosition;
     }
-
 }
 

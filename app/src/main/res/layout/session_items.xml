@@ -29,14 +29,6 @@
 
         </LinearLayout>
 
-        <!--<CheckBox
-            android:id="@+id/checkbox"
-            android:layout_width="68dp"
-            android:layout_height="wrap_content"
-            android:paddingBottom="50sp"
-            android:button="@drawable/custom_checkbox"
-            android:onClick="MyHandler" />-->
-
     </TableRow>
 
 </TableLayout>

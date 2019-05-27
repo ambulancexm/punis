@@ -1,5 +1,6 @@
 package com.example.punissementmanager;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -10,10 +11,16 @@ import android.widget.Toast;
 
 public class StagiaireActivity extends AppCompatActivity {
 
+    final String stagiaire=null;
+    private TextView nomStagiaire;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_stagiaire);
+        setContentView(R.layout.detail_stagiaire);
+        Intent intent = getIntent();
+        nomStagiaire = (TextView) findViewById(R.id.Nom_Stagiaire);
+        nomStagiaire.setText(intent.getStringExtra(stagiaire));
     }
 
     @Override

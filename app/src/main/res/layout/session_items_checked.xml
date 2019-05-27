@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/blocCheck"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="25px"
+    android:layout_marginBottom="25px">
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="4sp"
+        android:baselineAligned="true">
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="293dp"
+            android:layout_height="55dip"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/headingChecked"
+                android:layout_width="263dp"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:paddingLeft="55sp"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <CheckBox
+            android:id="@+id/checkbox"
+            android:layout_width="68dp"
+            android:layout_height="wrap_content"
+            android:paddingBottom="50sp"
+            android:button="@drawable/custom_checkbox"
+            android:onClick="MyHandler" />
+
+    </TableRow>
+
+</TableLayout>
+
+    <!--Code for displaying CheckedTextView for team names-->

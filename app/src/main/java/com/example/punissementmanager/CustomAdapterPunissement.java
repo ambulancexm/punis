@@ -9,12 +9,12 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class CustomAdapter extends BaseExpandableListAdapter {
+public class CustomAdapterPunissement extends BaseExpandableListAdapter {
 
     private Context context;
     private ArrayList<GroupInfo> teamName;
 
-    public CustomAdapter(Context context, ArrayList<GroupInfo> deptList) {
+    public CustomAdapterPunissement(Context context, ArrayList<GroupInfo> deptList) {
         this.context = context;
         this.teamName = deptList;
     }
@@ -37,10 +37,10 @@ public class CustomAdapter extends BaseExpandableListAdapter {
         ChildInfo detailInfo = (ChildInfo) getChild(groupPosition, childPosition);
         if (view == null) {
             LayoutInflater infalInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            view = infalInflater.inflate(R.layout.child_items, null);
+            view = infalInflater.inflate(R.layout.stagiaire_items_checked, null);
         }
-        TextView childItem = (TextView) view.findViewById(R.id.childItem);
-        childItem.setText(detailInfo.getName().trim());
+        TextView childItemChecked = (TextView) view.findViewById(R.id.childItemChecked);
+        childItemChecked.setText(detailInfo.getName().trim());
 
         return view;
     }
@@ -75,11 +75,11 @@ public class CustomAdapter extends BaseExpandableListAdapter {
         GroupInfo headerInfo = (GroupInfo) getGroup(groupPosition);
         if (view == null) {
             LayoutInflater inf = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            view = inf.inflate(R.layout.group_items, null);
+            view = inf.inflate(R.layout.session_items_checked, null);
         }
 
-        TextView heading = (TextView) view.findViewById(R.id.heading);
-        heading.setText(headerInfo.getName().trim());
+        TextView headingChecked = (TextView) view.findViewById(R.id.headingChecked);
+        headingChecked.setText(headerInfo.getName().trim());
 
         return view;
     }
@@ -95,3 +95,4 @@ public class CustomAdapter extends BaseExpandableListAdapter {
     }
 
 }
+
