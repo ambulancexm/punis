@@ -104,9 +104,10 @@ public class ApplicationManager {
         ContentValues content = new ContentValues();
 
         content.put(DBManager.DBPunissement.TYPE, punissement.getType().toString());
+        content.put(DBManager.DBPunissement.LIEU, punissement.getLieu());
         content.put(DBManager.DBPunissement.DESCRIPTION, punissement.getDescription());
-
         content.put(DBManager.DBPunissement.DATE, ConvertirDateEnString(punissement.getDate()));
+        content.put(DBManager.DBPunissement.FORMATEUR_ID, Integer.toString(punissement.getFormateur_id()));
 
         dbManager.ajouterContentValues(DBManager.DBPunissement.TABLE_NAME, content);
     }
@@ -290,7 +291,7 @@ public class ApplicationManager {
         Date dateTest = new Date();
 
         Punissement punissement1 = new Punissement(1, TYPEPUNITION.CUISINE, "cuisine un gateau", dateTest, "Cuisine LDNR", 1, stagiairesPunis1);
-        Punissement punissement2 = new Punissement(2, TYPEPUNITION.DEVOIR, "faire une appli qui gere les punissements", dateTest, "n'importe", 2, stagiairesPunis2);
+        Punissement punissement2 = new Punissement(2, TYPEPUNITION.DEVOIR, "faire une appli qui gere les punissements", dateTest, "partout", 2, stagiairesPunis2);
         Punissement punissement3 = new Punissement(3, TYPEPUNITION.TACHE, "repeindre les murs", dateTest, "Chez ouam", 1, stagiairesPunis3);
 
         AjouterFormateur(formateur1, "1234");
@@ -321,8 +322,9 @@ public class ApplicationManager {
         Log.e("testFormateur", testFormateur.getNom());
         Log.e("testSession", testSession.getNom());
         Log.e("testFormateur", testStagiaire.getNom());
+
         if (testPunissement != null)
-            Log.e("testFormateur", testPunissement.getType().toString());
+            Log.e("testpunissement", testPunissement.getType().toString());
         else
             Log.e("testPunissement", "est null");
     }
