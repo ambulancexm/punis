@@ -149,6 +149,48 @@ public class ApplicationManager {
         dbManager.ajouterContentValues(DBManager.DBStagiaire.TABLE_NAME, content);
     }
 
+    public ArrayList<Formateur> ListFormateur(){
+        Cursor res = dbManager.SelectRequest("SELECT * FROM " + DBManager.DBFormateur.TABLE_NAME+";");
+
+        ArrayList<Formateur> formateurs = new ArrayList();
+
+        if (res.getCount() == 0) {
+            return  null;
+        }
+
+
+        res.moveToFirst();
+
+        while (!res.isAfterLast()) {
+
+            int formateur_id = res.getInt(res.getColumnIndex(DBManager.DBFormateur.ID));
+            ArrayList<Integer> sessionIDs = new ArrayList<>();
+
+            Cursor resList = dbManager.SelectRequest("SELECT * FROM " + DBManager.DBSession.TABLE_NAME
+                    + " WHERE " + DBManager.DBSession.FORMATEUR_ID + "=" + formateur_id);
+            if (resList.getCount() != 0) {
+                resList.moveToFirst();
+
+                while (!resList.isAfterLast()) {
+                    sessionIDs.add(resList.getInt(resList.getColumnIndex(DBManager.DBSession.ID)));
+                    resList.moveToNext();
+                }
+            }
+            resList.close();
+
+            Formateur formateur = new Formateur(formateur_id,
+                    res.getString(res.getColumnIndex(DBManager.DBFormateur.NOM)),
+                    res.getString(res.getColumnIndex(DBManager.DBFormateur.PRENOM)),
+                    res.getString(res.getColumnIndex(DBManager.DBFormateur.USERNAME)),
+                    sessionIDs,
+                    res.getString(res.getColumnIndex(DBManager.DBFormateur.MDP)));
+                formateurs.add(formateur);
+                res.moveToNext();
+        }
+
+        return formateurs;
+    }
+
     public Formateur CreerFormateur(int formateur_id) {
         Cursor res = dbManager.SelectRequest("SELECT * FROM " + DBManager.DBFormateur.TABLE_NAME
             + " WHERE " + DBManager.DBFormateur.ID + "=" + formateur_id + ";");
@@ -177,20 +219,21 @@ public class ApplicationManager {
                     res.getString(res.getColumnIndex(DBManager.DBFormateur.NOM)),
                     res.getString(res.getColumnIndex(DBManager.DBFormateur.PRENOM)),
                     res.getString(res.getColumnIndex(DBManager.DBFormateur.USERNAME)),
-                    sessionIDs);
+                    sessionIDs,
+                    res.getString(res.getColumnIndex(DBManager.DBFormateur.MDP)));
         }
         else {
             return null;
         }
     }
 
-    public void AjouterFormateur(Formateur formateur, String motDePasse) {
+    public void AjouterFormateur(Formateur formateur) {
         ContentValues content = new ContentValues();
 
         content.put(DBManager.DBFormateur.USERNAME, formateur.getUserName());
         content.put(DBManager.DBFormateur.NOM, formateur.getNom());
         content.put(DBManager.DBFormateur.PRENOM, formateur.getPrenom());
-        content.put(DBManager.DBFormateur.MDP, motDePasse);
+        content.put(DBManager.DBFormateur.MDP, formateur.getMotDePasse());
 
         dbManager.ajouterContentValues(DBManager.DBFormateur.TABLE_NAME, content);
     }
@@ -243,12 +286,12 @@ public class ApplicationManager {
         formateurSession.add(1);
         formateurSession.add(3);
 
-        Formateur formateur1 = new Formateur(1, "theboss", "Rault", "Nicolas", formateurSession);
+        Formateur formateur1 = new Formateur(1, "theboss", "Rault", "Nicolas", formateurSession,"12345");
 
         ArrayList<Integer> formateurSession2 = new ArrayList<>();
         formateurSession.add(2);
 
-        Formateur formateur2 = new Formateur(2, "test", "Nom", "Prenom", formateurSession2);
+        Formateur formateur2 = new Formateur(2, "test", "Nom", "Prenom", formateurSession2,"1234567");
 
         ArrayList<Integer> stagiairesSession1 = new ArrayList<>();
         ArrayList<Integer> stagiairesSession2 = new ArrayList<>();
@@ -293,9 +336,9 @@ public class ApplicationManager {
         Punissement punissement2 = new Punissement(2, TYPEPUNITION.DEVOIR, "faire une appli qui gere les punissements", dateTest, "n'importe", 2, stagiairesPunis2);
         Punissement punissement3 = new Punissement(3, TYPEPUNITION.TACHE, "repeindre les murs", dateTest, "Chez ouam", 1, stagiairesPunis3);
 
-        AjouterFormateur(formateur1, "1234");
+        //AjouterFormateur(formateur1, "1234");
 
-        AjouterFormateur(formateur2, "4321");
+        //AjouterFormateur(formateur2, "4321");
 
         AjouterSession(session1);
         AjouterSession(session2);

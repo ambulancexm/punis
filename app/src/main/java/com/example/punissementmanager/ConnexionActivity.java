@@ -1,17 +1,23 @@
 package com.example.punissementmanager;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
+
+import com.bdd.DBManager;
+import com.objetsjava.Formateur;
 
 public class ConnexionActivity extends AppCompatActivity {
 
-    private EditText Username;
-    private EditText Password;
-    private Button buttonConnexion;
+    Cursor cursor;
+    SQLiteDatabase db;
+    DBManager manager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,9 +27,29 @@ public class ConnexionActivity extends AppCompatActivity {
         ApplicationManager.InitialiserApplication(this);
         ApplicationManager.getInstance().Test();
 
-        Username = (EditText) findViewById(R.id.Username);
-        Password = (EditText) findViewById(R.id.Password);
-        buttonConnexion = (Button) findViewById(R.id.buttonConnexion);
+        final EditText Username = (EditText) findViewById(R.id.Username);
+        final EditText Password = (EditText) findViewById(R.id.Password);
+        final Button buttonConnexion = (Button) findViewById(R.id.buttonConnexion);
+
+        manager = new DBManager(this);
+        db = manager.getReadableDatabase();
+
+        buttonConnexion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String _Username = Username.getText().toString();
+                String _Password = Password.getText().toString();
+
+                for(Formateur formateur : ApplicationManager.getInstance().ListFormateur()){
+                    if(_Username.equals(formateur.getUserName()) && _Password.equals(formateur.getMotDePasse())){
+                        Toast.makeText(getApplicationContext(),"vous êtes connecté",Toast.LENGTH_LONG).show();
+                    }else{
+                        Toast.makeText(getApplicationContext(),"Password ou username invalid",Toast.LENGTH_LONG).show();
+                    }
+                }
+            }
+        });
+
     }
 
     public void onRegisterButton(View view){
@@ -31,9 +57,5 @@ public class ConnexionActivity extends AppCompatActivity {
         startActivity(RegisterView);
     }
 
-
-    public void onLoginConnection(){
-
-    }
 
 }
