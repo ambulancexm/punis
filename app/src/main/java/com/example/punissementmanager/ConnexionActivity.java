@@ -5,6 +5,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -39,25 +40,19 @@ public class ConnexionActivity extends AppCompatActivity {
                 String _Username = Username.getText().toString();
                 String _Password = Password.getText().toString();
 
-                for(Formateur formateur : ApplicationManager.getInstance().ListFormateur()){
-                    if(_Username.equals(formateur.getUserName()) && _Password.equals(formateur.getMotDePasse())){
-                        Toast.makeText(getApplicationContext(),"vous êtes connecté",Toast.LENGTH_LONG).show();
-                    }else{
-                        Toast.makeText(getApplicationContext(),"Password ou username invalid",Toast.LENGTH_LONG).show();
-                    }
+                ApplicationManager.getInstance().setFormateurConnect(ApplicationManager.getInstance().FormateurConnect(_Username, _Password));
+
+                if (ApplicationManager.getInstance().getFormateurConnect() != null) {
+                    Toast.makeText(getApplicationContext(), "vous êtes connecté", Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(getApplicationContext(), "Password ou username invalid", Toast.LENGTH_LONG).show();
                 }
             }
         });
-
     }
 
     public void onRegisterButton(View view){
-        Intent RegisterView = new Intent(this,StagiaireActivity.class);
-        startActivity(RegisterView);
-    }
-
-    public void onLoginConnection(View view) {
-        Intent RegisterView = new Intent(this,StagiaireActivity.class);
+        Intent RegisterView = new Intent(this,RegisterActivity.class);
         startActivity(RegisterView);
     }
 }

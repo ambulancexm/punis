@@ -23,6 +23,8 @@ public class ApplicationManager {
 
     private static DBManager dbManager;
 
+    private Formateur formateurConnect;
+
     public static ApplicationManager getInstance() {
         if (applicationManager == null) {
             applicationManager = new ApplicationManager();
@@ -36,13 +38,15 @@ public class ApplicationManager {
     }
 
     public static void InitialiserApplication (Context context){
-        if (dbManager == null) {
-            dbManager = new DBManager(context);
-            dbManager.InitialiserDonnees();
-        }
+        dbManager = new DBManager(context);
+        dbManager.InitialiserDonnees();
     }
 
     public DBManager getDbManager() {return dbManager;}
+
+    public Formateur getFormateurConnect() {return formateurConnect;}
+
+    public void setFormateurConnect(Formateur F) {formateurConnect = F;}
 
     public String ConvertirDateEnString(Date date) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
@@ -195,46 +199,42 @@ public class ApplicationManager {
         dbManager.ajouterContentValues(DBManager.DBStagiaire.TABLE_NAME, content);
     }
 
-    public ArrayList<Formateur> ListFormateur(){
-        Cursor res = dbManager.SelectRequest("SELECT * FROM " + DBManager.DBFormateur.TABLE_NAME+";");
+    public Formateur FormateurConnect(String userName, String mdp){
+        Cursor res = dbManager.SelectRequest("SELECT * FROM " + DBManager.DBFormateur.TABLE_NAME+
+                " WHERE " + DBManager.DBFormateur.USERNAME + " = '" + userName +
+                "' AND " + DBManager.DBFormateur.MDP + " = '" + mdp + "';");
 
-        ArrayList<Formateur> formateurs = new ArrayList();
+        Formateur connect = null;
 
-        if (res.getCount() == 0) {
-            return  null;
-        }
+        if (res.getCount() != 0) {
+            res.moveToFirst();
+            if (!res.isAfterLast()) {
 
+                int id = res.getInt(res.getColumnIndex(DBManager.DBFormateur.ID));
+                ArrayList<Integer> sessionIDs = new ArrayList<>();
 
-        res.moveToFirst();
+                Cursor resList = dbManager.SelectRequest("SELECT * FROM " + DBManager.DBSession.TABLE_NAME
+                        + " WHERE " + DBManager.DBSession.FORMATEUR_ID + " = '" + id + "';");
 
-        while (!res.isAfterLast()) {
+                if (resList.getCount() != 0) {
+                    resList.moveToFirst();
 
-            int formateur_id = res.getInt(res.getColumnIndex(DBManager.DBFormateur.ID));
-            ArrayList<Integer> sessionIDs = new ArrayList<>();
-
-            Cursor resList = dbManager.SelectRequest("SELECT * FROM " + DBManager.DBSession.TABLE_NAME
-                    + " WHERE " + DBManager.DBSession.FORMATEUR_ID + "=" + formateur_id);
-            if (resList.getCount() != 0) {
-                resList.moveToFirst();
-
-                while (!resList.isAfterLast()) {
-                    sessionIDs.add(resList.getInt(resList.getColumnIndex(DBManager.DBSession.ID)));
-                    resList.moveToNext();
+                    while (!resList.isAfterLast()) {
+                        sessionIDs.add(resList.getInt(resList.getColumnIndex(DBManager.DBSession.ID)));
+                        resList.moveToNext();
+                    }
                 }
-            }
-            resList.close();
 
-            Formateur formateur = new Formateur(formateur_id,
-                    res.getString(res.getColumnIndex(DBManager.DBFormateur.NOM)),
-                    res.getString(res.getColumnIndex(DBManager.DBFormateur.PRENOM)),
-                    res.getString(res.getColumnIndex(DBManager.DBFormateur.USERNAME)),
-                    sessionIDs,
-                    res.getString(res.getColumnIndex(DBManager.DBFormateur.MDP)));
-                formateurs.add(formateur);
-                res.moveToNext();
+                connect = new Formateur(id,
+                        res.getString(res.getColumnIndex(DBManager.DBFormateur.USERNAME)),
+                        res.getString(res.getColumnIndex(DBManager.DBFormateur.PRENOM)),
+                        res.getString(res.getColumnIndex(DBManager.DBFormateur.NOM)),
+                        sessionIDs,
+                        res.getString(res.getColumnIndex(DBManager.DBFormateur.MDP)));
+            }
         }
 
-        return formateurs;
+        return connect;
     }
 
     public Formateur CreerFormateur(int formateur_id) {
