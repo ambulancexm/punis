@@ -59,6 +59,48 @@ public class ApplicationManager {
         return dateParse;
     }
 
+    public ArrayList<Punissement> ListPunissement(int formateur_id){
+        Cursor res = dbManager.SelectRequest("SELECT * FROM " + DBManager.DBPunissement.TABLE_NAME
+        + " WHERE " + DBManager.DBPunissement.FORMATEUR_ID + "=" + formateur_id +";");
+
+        ArrayList<Punissement> listePunissement = new ArrayList<>();
+
+        if (res.getCount() == 0){
+            res.moveToFirst();
+            while(!res.isAfterLast()){
+
+                int id = res.getInt(res.getColumnIndex(DBManager.DBPunissement.ID));
+                Cursor resList = dbManager.SelectRequest("SELECT * FROM " + DBManager.DBStagiairesPunis.TABLE_NAME
+                        + " WHERE " + DBManager.DBStagiairesPunis.PUNISSEMENT_ID + "=" + id);
+
+                ArrayList<Integer> stagiairesPunis = new ArrayList<>();
+
+                resList.moveToFirst();
+                if (resList.getCount() == 0) {
+                    while (!resList.isAfterLast()) {
+                        stagiairesPunis.add(resList.getInt(res.getColumnIndex(DBManager.DBStagiairesPunis.STAGIAIRE_ID)));
+                        resList.moveToNext();
+                    }
+                }
+                resList.close();
+
+                TYPEPUNITION type = TYPEPUNITION.valueOf(res.getString(res.getColumnIndex(DBManager.DBPunissement.TYPE)));
+                Punissement P = new Punissement(id,
+                        type,
+                        res.getString(res.getColumnIndex(DBManager.DBPunissement.DESCRIPTION)),
+                        ConvertirStringEnDate(res.getString(res.getColumnIndex(DBManager.DBPunissement.DATE))),
+                        res.getString(res.getColumnIndex(DBManager.DBPunissement.LIEU)),
+                        res.getInt(res.getColumnIndex(DBManager.DBPunissement.FORMATEUR_ID)),
+                        stagiairesPunis);
+
+            }
+        }
+
+        return listePunissement;
+    }
+
+
+
     public Punissement CreerPunissement (int punissement_id) {
         Cursor res = dbManager.SelectRequest("SELECT * FROM " + DBManager.DBPunissement.TABLE_NAME
                 + " WHERE " + DBManager.DBPunissement.ID + "=" + punissement_id +";");

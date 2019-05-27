@@ -26,14 +26,16 @@ public class ConnexionActivity extends AppCompatActivity {
         buttonConnexion = (Button) findViewById(R.id.buttonConnexion);
     }
 
-    public void onRegisterButton(View view){
-        Intent RegisterView = new Intent(ConnexionActivity.this,RegisterActivity.class);
-        startActivity(RegisterView);
-    }
+  //  public void onRegisterButton(View view){
+      //  Intent RegisterView = new Intent(ConnexionActivity.this,RegisterActivity.class);
+      //  startActivity(RegisterView);
+   // }
 
 
-    public void onLoginConnection(){
+    public void onLoginConnection(View view){
 
+        Intent testView = new Intent(ConnexionActivity.this,CalendarActivity.class);
+          startActivity(testView);
     }
 
 }
