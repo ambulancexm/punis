@@ -293,6 +293,44 @@ public class ApplicationManager {
         dbManager.ajouterContentValues(DBManager.DBSession.TABLE_NAME, content);
     }
 
+    public ArrayList<Session> ListSession() {
+        ArrayList<Session> sessions = new ArrayList<>();
+
+        Cursor res = dbManager.SelectRequest("SELECT * FROM " + DBManager.DBSession.TABLE_NAME + ";");
+        if (res.getCount() != 0 ) {
+            res.moveToFirst();
+
+            while(!res.isAfterLast()) {
+                ArrayList<Integer> stagiairesIDs = new ArrayList<>();
+
+                int session_id = res.getInt(res.getColumnIndex(DBManager.DBSession.ID));
+
+                Cursor resList = dbManager.SelectRequest("SELECT * FROM " + DBManager.DBStagiaire.TABLE_NAME
+                        + " WHERE " + DBManager.DBStagiaire.SESSION_ID + "=" + session_id + ";");
+
+                if (resList.getCount() != 0) {
+                    resList.moveToFirst();
+
+                    while (!resList.isAfterLast()) {
+                        stagiairesIDs.add(resList.getInt(resList.getColumnIndex(DBManager.DBStagiaire.ID)));
+                        resList.moveToNext();
+                    }
+
+                Session S = new Session(session_id,
+                        stagiairesIDs,
+                        res.getString(res.getColumnIndex(DBManager.DBSession.NOM)),
+                        res.getInt(res.getColumnIndex(DBManager.DBSession.FORMATEUR_ID)));
+
+                sessions.add(S);
+                res.moveToNext();
+
+                    }
+                }
+            }
+
+        return sessions;
+    }
+
     public Session CreerSession (int session_id) {
 
         Cursor res = dbManager.SelectRequest("SELECT * FROM " + DBManager.DBSession.TABLE_NAME
@@ -300,8 +338,6 @@ public class ApplicationManager {
         if (res.getCount() == 0 ) {
             return null;
         }
-
-
 
         ArrayList<Integer> stagiairesIDs = new ArrayList<>();
 

@@ -5,10 +5,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ExpandableListView;
 
+import com.objetsjava.Session;
+import com.objetsjava.Stagiaire;
+
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
-public class MainActivity extends AppCompatActivity {
+public class ListActivity extends AppCompatActivity {
 
     private LinkedHashMap<String, GroupInfo> team = new LinkedHashMap<String, GroupInfo>();
     private ArrayList<GroupInfo> deptList = new ArrayList<GroupInfo>();
@@ -27,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
     //get reference of the ExpandableListView
     simpleExpandableListView = (ExpandableListView) findViewById(R.id.simpleExpandableListView);
     // create the adapter by passing your ArrayList data
-    listAdapter = new CustomAdapter(MainActivity.this, deptList);
+    listAdapter = new CustomAdapter(ListActivity.this, deptList);
     // attach the adapter to the expandable list view
         simpleExpandableListView.setAdapter(listAdapter);
 
@@ -60,13 +63,22 @@ public class MainActivity extends AppCompatActivity {
     // load some initial data into out list
     private void loadData() {
 
-        addProduct("Développeur", "Thomas Béréziat");
+        ArrayList<Session> ListSession = ApplicationManager.getInstance().ListSession();
+
+        for (Session S:ListSession){
+            for(Integer T:S.getStagiairesIDS()){
+                Stagiaire stag = ApplicationManager.getInstance().CreerStagiaire(T);
+                addProduct(S.getNom(),stag.getPrenom() + " " + stag.getNom());
+            }
+        }
+
+        /*addProduct("Développeur", "Thomas Béréziat");
         addProduct("Développeur", "Pauline Cannillo");
         addProduct("Développeur", "Sonia Chargé");
         addProduct("Développeur", "Nicolas Rault");
 
         addProduct("Concepteur", "Thierry Ferreira");
-        addProduct("Concepteur", "Cyril Van Loo");
+        addProduct("Concepteur", "Cyril Van Loo");*/
 
     }
 
