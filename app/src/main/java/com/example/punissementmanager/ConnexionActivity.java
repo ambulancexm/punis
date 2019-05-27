@@ -19,7 +19,7 @@ public class ConnexionActivity extends AppCompatActivity {
         setContentView(R.layout.activity_connexion);
 
         ApplicationManager.InitialiserApplication(this);
-        ApplicationManager.getInstance().Test();
+        //ApplicationManager.getInstance().Test();
 
         Username = (EditText) findViewById(R.id.Username);
         Password = (EditText) findViewById(R.id.Password);
@@ -30,10 +30,6 @@ public class ConnexionActivity extends AppCompatActivity {
         Intent RegisterView = new Intent(this,StagiaireActivity.class);
         startActivity(RegisterView);
     }
-
-
-    public void onLoginConnection(){
-
 
     public void onLoginConnection(View view) {
         Intent RegisterView = new Intent(this,StagiaireActivity.class);

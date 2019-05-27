@@ -11,6 +11,8 @@ import android.util.Log;
 
 import com.example.punissementmanager.ApplicationManager;
 
+import java.util.Date;
+
 public class DBManager extends SQLiteOpenHelper {
 
     private static SQLiteDatabase dbWrite;
@@ -55,26 +57,6 @@ public class DBManager extends SQLiteOpenHelper {
         return res;
     }
 
-   /* public void insertStagiaire(Stagiaire pStagiaire) {
-        ContentValues content = new ContentValues();
-            content.put(ID, pStagiaire.getId());
-            content.put(NOM, pStagiaire.getNom());
-            content.put(PRENOM,pStagiaire.getPrenom());
-            content.put(PHOTO,pStagiaire.getImage());
-            content.put(EMAIL,pStagiaire.getEmail());
-            content.put(TELEPHONE,pStagiaire.getTelephone());
-            content.put(SESSION_ID,pStagiaire.getSession_id());
-
-
-
-            // Ici j'utilise insertOrThrow qui me permet de dégager une exception si l'insert ne s'est pas bien passé.
-            try {
-                dbWrite.insertOrThrow(TABLE_NAME, null, content);
-            } catch(SQLException e) {
-                System.out.println(e.getMessage());
-            }
-    }*/
-
     // classes internes pour stocker les commandes sql dans des constantes
 
     // constantes de la table stagiaire
@@ -97,27 +79,6 @@ public class DBManager extends SQLiteOpenHelper {
                 + TELEPHONE + " VARCHAR, "
                 + SESSION_ID + " INTEGER NOT NULL, " +
                 "CONSTRAINT fk_session FOREIGN KEY(" + DBSession.ID +") REFERENCES " + DBSession.TABLE_NAME +"(" + DBSession.ID + ")); ";
-
-       /* public static void insertStagiaire(Stagiaire pStagiaire) {
-
-            ContentValues content = new ContentValues();
-            content.put(ID, pStagiaire.getId());
-            content.put(NOM, pStagiaire.getNom());
-            content.put(PRENOM,pStagiaire.getPrenom());
-            content.put(PHOTO,pStagiaire.getImage());
-            content.put(EMAIL,pStagiaire.getEmail());
-            content.put(TELEPHONE,pStagiaire.getTelephone());
-            content.put(SESSION_ID,pStagiaire.getSession_id());
-
-
-
-            // Ici j'utilise insertOrThrow qui me permet de dégager une exception si l'insert ne s'est pas bien passé.
-            try {
-                dbWrite.insertOrThrow(TABLE_NAME, null, content);
-            } catch(SQLException e) {
-                System.out.println(e.getMessage());
-            }
-        }*/
     }
 
     public static class DBPunissement implements BaseColumns {
@@ -183,6 +144,163 @@ public class DBManager extends SQLiteOpenHelper {
                 + STAGIAIRE_ID + " INTEGER NOT NULL, " +
                 "CONSTRAINT fk_punissement FOREIGN KEY(" + DBPunissement.ID + ") REFERENCES " + DBPunissement.TABLE_NAME + "(" + DBPunissement.ID + "), " +
                 "CONSTRAINT fk_stagiaire FOREIGN KEY(" + DBStagiaire.ID + ") REFERENCES " + DBStagiaire.TABLE_NAME + "(" + DBStagiaire.ID + ")); ";
+    }
+
+    private void InitialiserDonnees() {
+        ContentValues content = new ContentValues();
+        
+        content.put(DBFormateur.USERNAME, "theboss");
+        content.put(DBFormateur.PRENOM, "Marc");
+        content.put(DBFormateur.NOM, "Abeille");
+        content.put(DBFormateur.MDP, "1234");
+
+        ajouterContentValues(DBFormateur.TABLE_NAME, content);
+
+        content.put(DBFormateur.USERNAME, "formateur");
+        content.put(DBFormateur.PRENOM, "Prenom");
+        content.put(DBFormateur.NOM, "Nom");
+        content.put(DBFormateur.MDP, "4321");
+
+        ajouterContentValues(DBFormateur.TABLE_NAME, content);
+
+        Date date = new Date();
+
+        content.put(DBPunissement.TYPE, "CUISINE");
+        content.put(DBPunissement.LIEU, "LDNR");
+        content.put(DBPunissement.DESCRIPTION, "Ramène un gâteau fait maison");
+        content.put(DBPunissement.DATE, ApplicationManager.getInstance().ConvertirDateEnString(date));
+        content.put(DBPunissement.FORMATEUR_ID, 1);
+
+        ajouterContentValues(DBManager.DBPunissement.TABLE_NAME, content);
+
+        content.put(DBPunissement.TYPE, "DEVOIR");
+        content.put(DBPunissement.LIEU, "LDNR");
+        content.put(DBPunissement.DESCRIPTION, "Créer une application qui gère les punissements");
+        content.put(DBPunissement.DATE, ApplicationManager.getInstance().ConvertirDateEnString(date));
+        content.put(DBPunissement.FORMATEUR_ID, 1);
+
+        ajouterContentValues(DBManager.DBPunissement.TABLE_NAME, content);
+
+        content.put(DBPunissement.TYPE, "TACHE");
+        content.put(DBPunissement.LIEU, "LDNR");
+        content.put(DBPunissement.DESCRIPTION, "Faire la vaissele");
+        content.put(DBPunissement.DATE, ApplicationManager.getInstance().ConvertirDateEnString(date));
+        content.put(DBPunissement.FORMATEUR_ID, 2);
+
+        ajouterContentValues(DBManager.DBPunissement.TABLE_NAME, content);
+
+        content.put(DBManager.DBSession.NOM, "Développeur C/C++/Java à distance");
+        content.put(DBManager.DBSession.FORMATEUR_ID, 1);
+
+        ajouterContentValues(DBManager.DBSession.TABLE_NAME, content);
+
+        content.put(DBManager.DBSession.NOM, "Session de nuls");
+        content.put(DBManager.DBSession.FORMATEUR_ID, 2);
+
+        ajouterContentValues(DBManager.DBSession.TABLE_NAME, content);
+
+        byte[] parDefaut = null;
+
+        content.put(DBManager.DBStagiaire.NOM, "Rault");
+        content.put(DBManager.DBStagiaire.PRENOM, "Nicolas");
+        content.put(DBManager.DBStagiaire.EMAIL, "nicopfrault@hotmail.com");
+        content.put(DBManager.DBStagiaire.TELEPHONE, "0600000000");
+        content.put(DBManager.DBStagiaire.PHOTO, parDefaut);
+        content.put(DBManager.DBStagiaire.SESSION_ID, 1);
+
+        ajouterContentValues(DBManager.DBStagiaire.TABLE_NAME, content);
+
+        content.put(DBManager.DBStagiaire.NOM, "Chargé");
+        content.put(DBManager.DBStagiaire.PRENOM, "Sonia");
+        content.put(DBManager.DBStagiaire.EMAIL, "adresse@truc.machin");
+        content.put(DBManager.DBStagiaire.TELEPHONE, "0600000000");
+        content.put(DBManager.DBStagiaire.PHOTO, parDefaut);
+        content.put(DBManager.DBStagiaire.SESSION_ID, 1);
+
+        ajouterContentValues(DBManager.DBStagiaire.TABLE_NAME, content);
+
+        content.put(DBManager.DBStagiaire.NOM, "Conte");
+        content.put(DBManager.DBStagiaire.PRENOM, "Thibault");
+        content.put(DBManager.DBStagiaire.EMAIL, "adresse@truc.machin");
+        content.put(DBManager.DBStagiaire.TELEPHONE, "0600000000");
+        content.put(DBManager.DBStagiaire.PHOTO, parDefaut);
+        content.put(DBManager.DBStagiaire.SESSION_ID, 1);
+
+        ajouterContentValues(DBManager.DBStagiaire.TABLE_NAME, content);
+
+        content.put(DBManager.DBStagiaire.NOM, "Bereziat");
+        content.put(DBManager.DBStagiaire.PRENOM, "Thomas");
+        content.put(DBManager.DBStagiaire.EMAIL, "adresse@truc.machin");
+        content.put(DBManager.DBStagiaire.TELEPHONE, "0600000000");
+        content.put(DBManager.DBStagiaire.PHOTO, parDefaut);
+        content.put(DBManager.DBStagiaire.SESSION_ID, 1);
+
+        ajouterContentValues(DBManager.DBStagiaire.TABLE_NAME, content);
+
+        content.put(DBManager.DBStagiaire.NOM, "Cannillo");
+        content.put(DBManager.DBStagiaire.PRENOM, "Pauline");
+        content.put(DBManager.DBStagiaire.EMAIL, "adresse@truc.machin");
+        content.put(DBManager.DBStagiaire.TELEPHONE, "0600000000");
+        content.put(DBManager.DBStagiaire.PHOTO, parDefaut);
+        content.put(DBManager.DBStagiaire.SESSION_ID, 1);
+
+        ajouterContentValues(DBManager.DBStagiaire.TABLE_NAME, content);
+
+        content.put(DBManager.DBStagiaire.NOM, "NomTest1");
+        content.put(DBManager.DBStagiaire.PRENOM, "PrénomTest1");
+        content.put(DBManager.DBStagiaire.EMAIL, "adresse1@truc.machin");
+        content.put(DBManager.DBStagiaire.TELEPHONE, "0600000001");
+        content.put(DBManager.DBStagiaire.PHOTO, parDefaut);
+        content.put(DBManager.DBStagiaire.SESSION_ID, 2);
+
+        ajouterContentValues(DBManager.DBStagiaire.TABLE_NAME, content);
+
+        content.put(DBManager.DBStagiaire.NOM, "NomTest2");
+        content.put(DBManager.DBStagiaire.PRENOM, "PrénomTest2");
+        content.put(DBManager.DBStagiaire.EMAIL, "adresse2@truc.machin");
+        content.put(DBManager.DBStagiaire.TELEPHONE, "0600000002");
+        content.put(DBManager.DBStagiaire.PHOTO, parDefaut);
+        content.put(DBManager.DBStagiaire.SESSION_ID, 2);
+
+        ajouterContentValues(DBManager.DBStagiaire.TABLE_NAME, content);
+
+        content.put(DBManager.DBStagiaire.NOM, "NomTest3");
+        content.put(DBManager.DBStagiaire.PRENOM, "PrénomTest3");
+        content.put(DBManager.DBStagiaire.EMAIL, "adresse3@truc.machin");
+        content.put(DBManager.DBStagiaire.TELEPHONE, "0600000003");
+        content.put(DBManager.DBStagiaire.PHOTO, parDefaut);
+        content.put(DBManager.DBStagiaire.SESSION_ID, 2);
+
+        ajouterContentValues(DBManager.DBStagiaire.TABLE_NAME, content);
+
+        content.put(DBManager.DBStagiaire.NOM, "NomTest4");
+        content.put(DBManager.DBStagiaire.PRENOM, "PrénomTest4");
+        content.put(DBManager.DBStagiaire.EMAIL, "adresse4@truc.machin");
+        content.put(DBManager.DBStagiaire.TELEPHONE, "0600000004");
+        content.put(DBManager.DBStagiaire.PHOTO, parDefaut);
+        content.put(DBManager.DBStagiaire.SESSION_ID, 2);
+
+        ajouterContentValues(DBManager.DBStagiaire.TABLE_NAME, content);
+
+        content.put(DBStagiairesPunis.PUNISSEMENT_ID, 1);
+        content.put(DBStagiairesPunis.STAGIAIRE_ID, 2);
+
+        ajouterContentValues(DBStagiairesPunis.TABLE_NAME, content);
+
+        content.put(DBStagiairesPunis.PUNISSEMENT_ID, 2);
+        content.put(DBStagiairesPunis.STAGIAIRE_ID, 4);
+
+        ajouterContentValues(DBStagiairesPunis.TABLE_NAME, content);
+
+        content.put(DBStagiairesPunis.PUNISSEMENT_ID, 2);
+        content.put(DBStagiairesPunis.STAGIAIRE_ID, 5);
+
+        ajouterContentValues(DBStagiairesPunis.TABLE_NAME, content);
+
+        content.put(DBStagiairesPunis.PUNISSEMENT_ID, 3);
+        content.put(DBStagiairesPunis.STAGIAIRE_ID, 6);
+
+        ajouterContentValues(DBStagiairesPunis.TABLE_NAME, content);
     }
 }
 

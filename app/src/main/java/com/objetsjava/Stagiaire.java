@@ -38,27 +38,6 @@ public class Stagiaire implements Serializable {
         this.puni = puni;
     }
 
-    public static void initHelper(Context pContext) {
-        dbManager = new DBManager(pContext);
-    }
-
-    public static List<Stagiaire> getCapitalsList() {
-        return dbManager.getAllCities();
-    }
-
-    // Fonction d'ajout d'une capital qui appel la fonction ajout du helper
-    public static void addCapital(Stagiaire pStagiaire) {
-        dbManager.insertStagiaire(pStagiaire);
-    }
-
-    // Fonction de suppression d'une capitale qui appelle la fonction suppression du helper
-    public static void deleteCapital(Stagiaire pStagiaire) {
-        dbManager.deleteStagiaire(pStagiaire);
-    }
-
-    // Fonction de MAJ d'une capitale qui appelle la fonction suppression du helper
-    public static void updateCapital(Stagiaire pStagiaire) { dbManager.updateStagiaire(pStagiaire);}
-
     public int getId() {
         return id;
     }
