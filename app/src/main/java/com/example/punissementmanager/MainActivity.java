@@ -3,9 +3,7 @@ package com.example.punissementmanager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.CheckedTextView;
 import android.widget.ExpandableListView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -57,8 +55,6 @@ public class MainActivity extends AppCompatActivity {
             return false;
         }
     });
-
-
 }
 
     // load some initial data into out list
@@ -73,7 +69,6 @@ public class MainActivity extends AppCompatActivity {
         addProduct("Concepteur", "Cyril Van Loo");
 
     }
-
 
     // here we maintain team and player names
     private int addProduct(String teamName, String playerName) {
@@ -109,3 +104,4 @@ public class MainActivity extends AppCompatActivity {
     }
 
 }
+
