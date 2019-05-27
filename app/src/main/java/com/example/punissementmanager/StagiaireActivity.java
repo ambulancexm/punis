@@ -12,7 +12,7 @@ import com.objetsjava.Stagiaire;
 
 public class StagiaireActivity extends AppCompatActivity {
 
-    StagiaireActivity Stag = new StagiaireActivity();
+
 
     private ApplicationManager Am;
     @Override
@@ -33,7 +33,7 @@ public class StagiaireActivity extends AppCompatActivity {
        int id = item.getItemId();
         switch (id){
             case R.id.add_stagiaire:
-
+                Toast.makeText(getApplicationContext(),"Item 1 Selected", Toast.LENGTH_LONG).show();
 
                 return true;
             case R.id.modif_stagiaire:
