@@ -34,7 +34,7 @@ public class ConnexionActivity extends AppCompatActivity {
 
     public void onLoginConnection(View view){
 
-        Intent testView = new Intent(ConnexionActivity.this,CalendarActivity.class);
+        Intent testView = new Intent(ConnexionActivity.this,GestionPunissement.class);
           startActivity(testView);
     }
 

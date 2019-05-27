@@ -19,7 +19,7 @@ public class MyAdapteurPunissement extends RecyclerView.Adapter<MyViewHolder>{
     }
 
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int itemType) {
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.cell_view,viewGroup,false);
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.listPunissement_view,viewGroup,false);
         return new MyViewHolder(view);
     }
 
