@@ -60,6 +60,7 @@
 
     <Button
         android:id="@+id/buttonConnexion"
+        android:onClick="onLoginConnection"
         android:layout_width="227dp"
         android:layout_height="49dp"
         android:layout_marginStart="8dp"

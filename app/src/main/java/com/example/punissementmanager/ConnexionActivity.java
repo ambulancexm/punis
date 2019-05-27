@@ -32,6 +32,7 @@ public class ConnexionActivity extends AppCompatActivity {
     }
 
 
+    public void onLoginConnection(){
 
 
     public void onLoginConnection(View view) {
