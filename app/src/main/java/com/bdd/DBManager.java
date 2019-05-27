@@ -10,6 +10,7 @@ import android.provider.BaseColumns;
 import android.util.Log;
 
 import com.example.punissementmanager.ApplicationManager;
+import com.objetsjava.Formateur;
 
 public class DBManager extends SQLiteOpenHelper {
 
@@ -32,7 +33,7 @@ public class DBManager extends SQLiteOpenHelper {
         db.execSQL(DBPunissement.CREATE_TABLE);
         db.execSQL(DBStagiaire.CREATE_TABLE);
         db.execSQL(DBStagiairesPunis.CREATE_TABLE);
-        db.execSQL(DBPunissement.AjoutTest2);
+        InitialiserDonnees();
     }
 
     @Override
@@ -47,6 +48,7 @@ public class DBManager extends SQLiteOpenHelper {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
+        content.clear();
     }
 
     public Cursor SelectRequest(String request) {
@@ -141,6 +143,26 @@ public class DBManager extends SQLiteOpenHelper {
                 + STAGIAIRE_ID + " INTEGER NOT NULL, " +
                 "CONSTRAINT fk_punissement FOREIGN KEY(" + DBPunissement.ID + ") REFERENCES " + DBPunissement.TABLE_NAME + "(" + DBPunissement.ID + "), " +
                 "CONSTRAINT fk_stagiaire FOREIGN KEY(" + DBStagiaire.ID + ") REFERENCES " + DBStagiaire.TABLE_NAME + "(" + DBStagiaire.ID + ")); ";
+    }
+
+    private void InitialiserDonnees() {
+        ContentValues content = new ContentValues();
+
+        content.put(DBFormateur.USERNAME, "theboss");
+        content.put(DBFormateur.PRENOM, "Marc");
+        content.put(DBFormateur.NOM, "Abeille");
+        content.put(DBFormateur.MDP, "1234");
+
+        ajouterContentValues(DBFormateur.TABLE_NAME, content);
+
+        content.put(DBFormateur.USERNAME, "formateur");
+        content.put(DBFormateur.PRENOM, "Prenom");
+        content.put(DBFormateur.NOM, "Nom");
+        content.put(DBFormateur.MDP, "4321");
+
+        ajouterContentValues(DBFormateur.TABLE_NAME, content);
+
+
     }
 }
 

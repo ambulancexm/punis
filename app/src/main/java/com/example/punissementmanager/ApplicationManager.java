@@ -101,17 +101,15 @@ public class ApplicationManager {
     }
 
     public void AjouterPunissement (Punissement punissement) {
-//        ContentValues content = new ContentValues();
-//
-//        content.put(DBManager.DBPunissement.TYPE, punissement.getType().toString());
-//        content.put(DBManager.DBPunissement.DESCRIPTION, punissement.getDescription());
-//        content.put(DBManager.DBPunissement.DATE, ConvertirDateEnString(punissement.getDate()));
-//
-//        dbManager.ajouterContentValues(DBManager.DBPunissement.TABLE_NAME, content);
-        String commande = "INSERT INTO punissement (type, date, lieu, description, formateur_id) VALUES ('" +
-                punissement.getType().toString() + "', '" +
-                ConvertirDateEnString(punissement.getDate()) + "', '" +
-                punissement.getDescription() + "', 'testitest', '1');";
+        ContentValues content = new ContentValues();
+
+        content.put(DBManager.DBPunissement.TYPE, punissement.getType().toString());
+        content.put(DBManager.DBPunissement.LIEU, punissement.getLieu());
+        content.put(DBManager.DBPunissement.DESCRIPTION, punissement.getDescription());
+        content.put(DBManager.DBPunissement.DATE, ConvertirDateEnString(punissement.getDate()));
+        content.put(DBManager.DBPunissement.FORMATEUR_ID, Integer.toString(punissement.getFormateur_id()));
+
+        dbManager.ajouterContentValues(DBManager.DBPunissement.TABLE_NAME, content);
     }
 
     public Stagiaire CreerStagiaire (int stagiaire_id) {
@@ -293,7 +291,7 @@ public class ApplicationManager {
         Date dateTest = new Date();
 
         Punissement punissement1 = new Punissement(1, TYPEPUNITION.CUISINE, "cuisine un gateau", dateTest, "Cuisine LDNR", 1, stagiairesPunis1);
-        Punissement punissement2 = new Punissement(2, TYPEPUNITION.DEVOIR, "faire une appli qui gere les punissements", dateTest, "n'importe", 2, stagiairesPunis2);
+        Punissement punissement2 = new Punissement(2, TYPEPUNITION.DEVOIR, "faire une appli qui gere les punissements", dateTest, "partout", 2, stagiairesPunis2);
         Punissement punissement3 = new Punissement(3, TYPEPUNITION.TACHE, "repeindre les murs", dateTest, "Chez ouam", 1, stagiairesPunis3);
 
         AjouterFormateur(formateur1, "1234");
@@ -324,21 +322,6 @@ public class ApplicationManager {
         Log.e("testFormateur", testFormateur.getNom());
         Log.e("testSession", testSession.getNom());
         Log.e("testFormateur", testStagiaire.getNom());
-
-        Cursor res = dbManager.SelectRequest("SELECT * FROM " + DBManager.DBPunissement.TABLE_NAME + ";");
-
-        if (res.getCount() == 0) {
-            Log.e("error", "aucun punissements");
-        }
-        else {
-            res.moveToFirst();
-            while (!res.isAfterLast()) {
-                Log.e("punissement : ", Integer.toString(res.getInt(res.getColumnIndex(DBManager.DBPunissement.ID))) + " " + res.getString(res.getColumnIndex(DBManager.DBPunissement.LIEU)));
-                res.moveToNext();
-            }
-
-        }
-
 
         if (testPunissement != null)
             Log.e("testpunissement", testPunissement.getType().toString());
