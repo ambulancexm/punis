@@ -7,13 +7,19 @@ import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.objetsjava.Stagiaire;
+
 
 public class StagiaireActivity extends AppCompatActivity {
 
+    StagiaireActivity Stag = new StagiaireActivity();
+
+    private ApplicationManager Am;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stagiaire);
+
     }
 
     @Override
@@ -27,7 +33,8 @@ public class StagiaireActivity extends AppCompatActivity {
        int id = item.getItemId();
         switch (id){
             case R.id.add_stagiaire:
-                Toast.makeText(getApplicationContext(),"Item 1 Selected",Toast.LENGTH_LONG).show();
+
+
                 return true;
             case R.id.modif_stagiaire:
                 Toast.makeText(getApplicationContext(),"Item 2 Selected", Toast.LENGTH_LONG).show();
