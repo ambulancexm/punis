@@ -13,12 +13,14 @@
 
     <CheckedTextView
         android:id="@+id/heading"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="109dp"
+        android:gravity="center_vertical"
+        android:checkMark="@android:drawable/checkbox_off_background"
         android:checked="true"
         android:paddingLeft="55sp"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textStyle="bold"/>
+        android:textStyle="bold" />
 
     <!--</ScrollView>-->
     </LinearLayout>

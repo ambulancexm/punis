@@ -11,10 +11,12 @@
                 android:layout_height="wrap_content"
                 android:scrollbars="vertical">-->
 
-                <TextView
+                <CheckedTextView
                     android:id="@+id/childItem"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:checkMark="@android:drawable/checkbox_off_background"
+                    android:checked="true"
                     android:layout_alignParentTop="true"
                     android:layout_marginLeft="10dp"
                     android:textAppearance="?android:attr/textAppearanceMedium"/>
