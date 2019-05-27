@@ -101,14 +101,17 @@ public class ApplicationManager {
     }
 
     public void AjouterPunissement (Punissement punissement) {
-        ContentValues content = new ContentValues();
-
-        content.put(DBManager.DBPunissement.TYPE, punissement.getType().toString());
-        content.put(DBManager.DBPunissement.DESCRIPTION, punissement.getDescription());
-
-        content.put(DBManager.DBPunissement.DATE, ConvertirDateEnString(punissement.getDate()));
-
-        dbManager.ajouterContentValues(DBManager.DBPunissement.TABLE_NAME, content);
+//        ContentValues content = new ContentValues();
+//
+//        content.put(DBManager.DBPunissement.TYPE, punissement.getType().toString());
+//        content.put(DBManager.DBPunissement.DESCRIPTION, punissement.getDescription());
+//        content.put(DBManager.DBPunissement.DATE, ConvertirDateEnString(punissement.getDate()));
+//
+//        dbManager.ajouterContentValues(DBManager.DBPunissement.TABLE_NAME, content);
+        String commande = "INSERT INTO punissement (type, date, lieu, description, formateur_id) VALUES ('" +
+                punissement.getType().toString() + "', '" +
+                ConvertirDateEnString(punissement.getDate()) + "', '" +
+                punissement.getDescription() + "', 'testitest', '1');";
     }
 
     public Stagiaire CreerStagiaire (int stagiaire_id) {
@@ -321,8 +324,24 @@ public class ApplicationManager {
         Log.e("testFormateur", testFormateur.getNom());
         Log.e("testSession", testSession.getNom());
         Log.e("testFormateur", testStagiaire.getNom());
+
+        Cursor res = dbManager.SelectRequest("SELECT * FROM " + DBManager.DBPunissement.TABLE_NAME + ";");
+
+        if (res.getCount() == 0) {
+            Log.e("error", "aucun punissements");
+        }
+        else {
+            res.moveToFirst();
+            while (!res.isAfterLast()) {
+                Log.e("punissement : ", Integer.toString(res.getInt(res.getColumnIndex(DBManager.DBPunissement.ID))) + " " + res.getString(res.getColumnIndex(DBManager.DBPunissement.LIEU)));
+                res.moveToNext();
+            }
+
+        }
+
+
         if (testPunissement != null)
-            Log.e("testFormateur", testPunissement.getType().toString());
+            Log.e("testpunissement", testPunissement.getType().toString());
         else
             Log.e("testPunissement", "est null");
     }

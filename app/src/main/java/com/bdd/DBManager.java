@@ -32,6 +32,7 @@ public class DBManager extends SQLiteOpenHelper {
         db.execSQL(DBPunissement.CREATE_TABLE);
         db.execSQL(DBStagiaire.CREATE_TABLE);
         db.execSQL(DBStagiairesPunis.CREATE_TABLE);
+        db.execSQL(DBPunissement.AjoutTest2);
     }
 
     @Override
@@ -94,6 +95,11 @@ public class DBManager extends SQLiteOpenHelper {
                 + DESCRIPTION + " TEXT, "
                 + FORMATEUR_ID + " INTEGER NOT NULL, " +
                 "CONSTRAINT fk_formateur FOREIGN KEY(" + DBFormateur.ID +") REFERENCES " + DBFormateur.TABLE_NAME +"(" + DBFormateur.ID + ")); ";
+
+        public static final String AjoutTest = "INSERT INTO " + TABLE_NAME + " ("
+                + TYPE +", " + DATE + ", " + LIEU + ", " + DESCRIPTION + ", " +  FORMATEUR_ID +")" +
+                " VALUES(cuisine, lundi, test, testitest, 1);";
+        public static final String AjoutTest2 = "INSERT INTO punissement (type, date, lieu, description, formateur_id) VALUES ('CUISINE', 'lundi', 'test', 'testitest', '1');";
     }
 
     public static class DBSession implements BaseColumns {
