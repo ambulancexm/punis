@@ -1,13 +1,18 @@
 package com.objetsjava;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 
+import com.bdd.DBManager;
+
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.Serializable;
+import java.util.List;
 
-public class Stagiaire {
+public class Stagiaire implements Serializable {
 
     private int id;
     private String nom;
@@ -17,6 +22,10 @@ public class Stagiaire {
     private String telephone;
     private int session_id;
     private Boolean puni;
+
+    private static DBManager dbManager;
+
+    public  Stagiaire(){}
 
     public Stagiaire(int id, String nom, String prenom, byte[] image, String email, String telephone, int session_id, Boolean puni) {
         this.id = id;
@@ -28,6 +37,27 @@ public class Stagiaire {
         this.session_id = session_id;
         this.puni = puni;
     }
+
+    public static void initHelper(Context pContext) {
+        dbManager = new DBManager(pContext);
+    }
+
+    public static List<Stagiaire> getCapitalsList() {
+        return dbManager.getAllCities();
+    }
+
+    // Fonction d'ajout d'une capital qui appel la fonction ajout du helper
+    public static void addCapital(Stagiaire pStagiaire) {
+        dbManager.insertStagiaire(pStagiaire);
+    }
+
+    // Fonction de suppression d'une capitale qui appelle la fonction suppression du helper
+    public static void deleteCapital(Stagiaire pStagiaire) {
+        dbManager.deleteStagiaire(pStagiaire);
+    }
+
+    // Fonction de MAJ d'une capitale qui appelle la fonction suppression du helper
+    public static void updateCapital(Stagiaire pStagiaire) { dbManager.updateStagiaire(pStagiaire);}
 
     public int getId() {
         return id;
