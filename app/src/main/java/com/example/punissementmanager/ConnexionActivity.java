@@ -6,6 +6,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,7 +21,7 @@ public class ConnexionActivity extends AppCompatActivity {
     Cursor cursor;
     SQLiteDatabase db;
     DBManager manager;
-
+    Intent RegisterView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +45,7 @@ public class ConnexionActivity extends AppCompatActivity {
                 ApplicationManager.getInstance().setFormateurConnect(ApplicationManager.getInstance().FormateurConnect(_Username, _Password));
 
                 if (ApplicationManager.getInstance().getFormateurConnect() != null) {
+
                     Toast.makeText(getApplicationContext(), "vous êtes connecté", Toast.LENGTH_LONG).show();
                 } else {
                     Toast.makeText(getApplicationContext(), "Password ou username invalid", Toast.LENGTH_LONG).show();
@@ -52,7 +55,50 @@ public class ConnexionActivity extends AppCompatActivity {
     }
 
     public void onRegisterButton(View view){
-        Intent RegisterView = new Intent(this,RegisterActivity.class);
+        RegisterView = new Intent(this,RegisterActivity.class);
         startActivity(RegisterView);
+    }
+
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_test, menu);
+        return true;
+    }
+
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        int id = item.getItemId();
+
+
+        switch (id){
+            case R.id.stagiaire:
+                RegisterView = new Intent(getApplicationContext(),StagiaireActivity.class);
+                startActivity(RegisterView);
+                return true;
+            case R.id.punis:
+                RegisterView = new Intent(this,RegisterActivity.class);
+                startActivity(RegisterView);
+                return true;
+            case R.id.formateur:
+                RegisterView = new Intent(this,PunissementActivity.class);
+                startActivity(RegisterView);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+
+    }
+
+    public void onLoginConnection(View view) {
+        RegisterView = new Intent(getApplicationContext(),StagiaireActivity.class);
+        Log.e("**************** ", "passé!!!");
+        startActivity(RegisterView);
+
+
     }
 }

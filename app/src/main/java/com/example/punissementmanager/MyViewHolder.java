@@ -23,6 +23,8 @@ public class MyViewHolder extends RecyclerView.ViewHolder {
 
     public MyViewHolder(View itemView) {
         super(itemView);
+
+
     }
 
     //puis ajouter une fonction pour remplir la cellule en fonction d'un CapitalObject

@@ -5,15 +5,26 @@
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="A punir!!"
+        android:label="punishement"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        android:theme="@style/AppTheme">
         <activity android:name=".GestionPunissement"></activity>
-        <activity android:name=".CalendarActivity" />
-        <activity android:name=".PunissementActivity" />
-        <activity android:name=".StagiaireActivity"></activity>
-        <activity android:name=".ConnexionActivity">
+        <activity
+            android:theme="@style/AppTheme"
+            android:label="Calendrier"
+            android:name=".CalendarActivity" />
+        <activity
+            android:theme="@style/AppTheme"
+            android:label="punissement"
+            android:name=".PunissementActivity" />
+        <activity
+            android:theme="@style/AppTheme"
+            android:label="Stagiaire"
+            android:name=".StagiaireActivity"></activity> -->
+        <activity
+
+            android:name=".ConnexionActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
