@@ -20,9 +20,10 @@ public class FormulairePunissement extends Activity {
 
         spinner = (Spinner) findViewById(R.id.spinner);
         List exempleList = new ArrayList();
-        exemple.add("Plat salé");
-        exemple.add("Plat sucré");
-        exemple.add("Tâche à accomplir");
+
+        exempleList.add("Plat salé");
+        exempleList.add("Plat sucré");
+        exempleList.add("Tâche à accomplir");
 
         ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, exempleList);
 

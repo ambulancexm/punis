@@ -72,26 +72,31 @@ public class ApplicationManager {
 
         ArrayList<Punissement> listePunissement = new ArrayList<>();
 
-        if (res.getCount() == 0){
+
+        if (res.getCount() > 0){
             res.moveToFirst();
             while(!res.isAfterLast()){
 
+
                 int id = res.getInt(res.getColumnIndex(DBManager.DBPunissement.ID));
                 Cursor resList = dbManager.SelectRequest("SELECT * FROM " + DBManager.DBStagiairesPunis.TABLE_NAME
-                        + " WHERE " + DBManager.DBStagiairesPunis.PUNISSEMENT_ID + "=" + id);
+                        + " WHERE " + DBManager.DBStagiairesPunis.PUNISSEMENT_ID + "=" + id + ";");
 
                 ArrayList<Integer> stagiairesPunis = new ArrayList<>();
 
+
                 resList.moveToFirst();
-                if (resList.getCount() == 0) {
+
+                if (resList.getCount() > 0) {
                     while (!resList.isAfterLast()) {
-                        stagiairesPunis.add(resList.getInt(res.getColumnIndex(DBManager.DBStagiairesPunis.STAGIAIRE_ID)));
+                        stagiairesPunis.add(resList.getInt(resList.getColumnIndex(DBManager.DBStagiairesPunis.STAGIAIRE_ID)));
                         resList.moveToNext();
                     }
                 }
                 resList.close();
 
                 TYPEPUNITION type = TYPEPUNITION.valueOf(res.getString(res.getColumnIndex(DBManager.DBPunissement.TYPE)));
+
                 Punissement P = new Punissement(id,
                         type,
                         res.getString(res.getColumnIndex(DBManager.DBPunissement.DESCRIPTION)),
@@ -99,14 +104,12 @@ public class ApplicationManager {
                         res.getString(res.getColumnIndex(DBManager.DBPunissement.LIEU)),
                         res.getInt(res.getColumnIndex(DBManager.DBPunissement.FORMATEUR_ID)),
                         stagiairesPunis);
-
+                listePunissement.add(P);
+                res.moveToNext();
             }
         }
-
         return listePunissement;
     }
-
-
 
     public Punissement CreerPunissement (int punissement_id) {
         Cursor res = dbManager.SelectRequest("SELECT * FROM " + DBManager.DBPunissement.TABLE_NAME

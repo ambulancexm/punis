@@ -31,8 +31,6 @@ public class ConnexionActivity extends AppCompatActivity {
         final EditText Password = (EditText) findViewById(R.id.Password);
         final Button buttonConnexion = (Button) findViewById(R.id.buttonConnexion);
 
-        manager = new DBManager(this);
-        db = manager.getReadableDatabase();
 
         buttonConnexion.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,7 +41,9 @@ public class ConnexionActivity extends AppCompatActivity {
                 ApplicationManager.getInstance().setFormateurConnect(ApplicationManager.getInstance().FormateurConnect(_Username, _Password));
 
                 if (ApplicationManager.getInstance().getFormateurConnect() != null) {
-                    Toast.makeText(getApplicationContext(), "vous êtes connecté", Toast.LENGTH_LONG).show();
+                   // Toast.makeText(getApplicationContext(), "vous êtes connecté", Toast.LENGTH_LONG).show();
+                    Intent testView = new Intent(ConnexionActivity.this,GestionPunissement.class);
+                    startActivity(testView);
                 } else {
                     Toast.makeText(getApplicationContext(), "Password ou username invalid", Toast.LENGTH_LONG).show();
                 }
