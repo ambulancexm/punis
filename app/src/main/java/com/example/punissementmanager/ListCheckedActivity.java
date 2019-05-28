@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.CheckedTextView;
 import android.widget.ExpandableListView;
 
 import com.objetsjava.Session;
@@ -19,9 +20,6 @@ public class ListCheckedActivity extends AppCompatActivity {
 
     private CustomAdapterPunissement listAdapter;
     private ExpandableListView ExpandableListViewChecked;
-
-    private static final String stagiaire=null;
-    String[] tab;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -47,11 +45,10 @@ public class ListCheckedActivity extends AppCompatActivity {
                 //get the child info
                 ChildInfo detailInfo = headerInfo.getPlayerName().get(childPosition);
                 //display it or do something with it
-            /*Toast.makeText(getBaseContext(), " Team And Player :: " + headerInfo.getName()
-                    + "/" + detailInfo.getName(), Toast.LENGTH_LONG).show();*/
                 //Intent DetailStagiaire = new Intent(ListCheckedActivity.this, StagiaireActivity.class);
                 //DetailStagiaire.putExtra(stagiaire, tab[i]);
                 //startActivity(DetailStagiaire);
+
                 return false;
             }
         });

@@ -12,9 +12,12 @@
         android:layout_alignParentTop="true"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:checked="false"
         android:checkMark="@android:drawable/checkbox_off_background"
-        android:textColor="#333"
-        android:textAppearance="?android:attr/textAppearanceMedium"/>
+        android:checked="false"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="#333" />
 
 </RelativeLayout>
+
+
+
