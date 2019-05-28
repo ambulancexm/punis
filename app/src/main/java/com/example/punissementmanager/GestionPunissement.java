@@ -1,13 +1,18 @@
 package com.example.punissementmanager;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import com.objetsjava.Punissement;
 
 import java.util.ArrayList;
 
 public class GestionPunissement extends AppCompatActivity {
+
+
 
     private ArrayList<Punissement>listePunissement = new ArrayList<>();
     @Override
@@ -19,6 +24,37 @@ public class GestionPunissement extends AppCompatActivity {
 
     }
 
+@Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_test, menu);
+        return true;
+    }
 
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        Intent RegisterView;
+        int id = item.getItemId();
+
+
+        switch (id){
+            case R.id.stagiaire:
+                RegisterView = new Intent(this,StagiaireActivity.class);
+                startActivity(RegisterView);
+                return true;
+            case R.id.punis:
+                RegisterView = new Intent(this,RegisterActivity.class);
+                startActivity(RegisterView);
+                return true;
+            case R.id.formateur:
+                RegisterView = new Intent(this,GestionPunissement.class);
+                startActivity(RegisterView);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+
+    }
 
 }

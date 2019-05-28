@@ -85,7 +85,7 @@ public class ConnexionActivity extends AppCompatActivity {
                 startActivity(RegisterView);
                 return true;
             case R.id.formateur:
-                RegisterView = new Intent(this,PunissementActivity.class);
+                RegisterView = new Intent(this,GestionPunissement.class);
                 startActivity(RegisterView);
                 return true;
             default:
