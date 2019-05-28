@@ -9,15 +9,16 @@ public class Formateur {
     private String userName;
     private String nom;
     private String prenom;
-    //private String motDePasse;
+    private String motDePasse;
     private ArrayList<Integer> sessionIDs;
 
-    public Formateur(int id, String userName, String nom, String prenom, ArrayList<Integer> sessionIDs) {
+    public Formateur(int id, String userName, String nom, String prenom, ArrayList<Integer> sessionIDs, String motDePasse) {
         this.id = id;
         this.userName = userName;
         this.nom = nom;
         this.prenom = prenom;
         this.sessionIDs = sessionIDs;
+        this.motDePasse = motDePasse;
     }
 
     public int getId() {
@@ -66,5 +67,13 @@ public class Formateur {
 
     public void setUserName(String userName) {
         this.userName = userName;
+    }
+
+    public String getMotDePasse() {
+        return motDePasse;
+    }
+
+    public void setMotDePasse(String motDePasse) {
+        this.motDePasse = motDePasse;
     }
 }
