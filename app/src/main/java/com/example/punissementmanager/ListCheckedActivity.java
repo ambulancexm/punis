@@ -17,7 +17,7 @@ public class ListCheckedActivity extends AppCompatActivity {
     private LinkedHashMap<String, GroupInfo> team = new LinkedHashMap<String, GroupInfo>();
     private ArrayList<GroupInfo> deptList = new ArrayList<GroupInfo>();
 
-    private CustomAdapterStagiaire listAdapter;
+    private CustomAdapterPunissement listAdapter;
     private ExpandableListView ExpandableListViewChecked;
 
     private static final String stagiaire=null;
@@ -34,7 +34,7 @@ public class ListCheckedActivity extends AppCompatActivity {
         //get reference of the ExpandableListView
         ExpandableListViewChecked = (ExpandableListView) findViewById(R.id.ExpandableListViewChecked);
         // create the adapter by passing your ArrayList data
-        listAdapter = new CustomAdapterStagiaire(ListCheckedActivity.this, deptList);
+        listAdapter = new CustomAdapterPunissement(ListCheckedActivity.this, deptList);
         // attach the adapter to the expandable list view
         ExpandableListViewChecked.setAdapter(listAdapter);
 
