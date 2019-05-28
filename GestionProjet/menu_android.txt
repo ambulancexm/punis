@@ -1,0 +1,98 @@
+***********************************
+a ajouter dans gestionPunissement
+***********************************
+
+@Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_punissement, menu);
+        return true;
+    }
+
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        Intent RegisterView;
+        int id = item.getItemId();
+
+
+        switch (id){
+            case R.id.add_punissement:
+                Toast.makeText(getApplicationContext(),"Item 1 Selected", Toast.LENGTH_LONG).show();
+                return true;
+            case R.id.modif_punissement:
+                Toast.makeText(getApplicationContext(),"Item 2 Selected", Toast.LENGTH_LONG).show();
+                return true;
+            case R.id.delete_punissement:
+                Toast.makeText(getApplicationContext(),"Item 3 Selected", Toast.LENGTH_LONG).show();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+
+    }
+
+***********************************
+a ajouter dans StagiaireActivity
+***********************************
+
+@Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_stagiaire, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+       int id = item.getItemId();
+        switch (id){
+            case R.id.add_stagiaire:
+                Toast.makeText(getApplicationContext(),"Item 1 Selected", Toast.LENGTH_LONG).show();
+
+                return true;
+            case R.id.modif_stagiaire:
+                Toast.makeText(getApplicationContext(),"Item 2 Selected", Toast.LENGTH_LONG).show();
+                return true;
+            case R.id.delete_stagiaire:
+                Toast.makeText(getApplicationContext(),"Item 3 Selected", Toast.LENGTH_LONG).show();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+***********************************
+a ajouter dans ConnexionActivity
+***********************************
+
+@Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_test, menu);
+        return true;
+    }
+
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        int id = item.getItemId();
+
+
+        switch (id){
+            case R.id.stagiaire:
+                RegisterView = new Intent(this,StagiaireActivity.class);
+                startActivity(RegisterView);
+                return true;
+            case R.id.punis:
+                Toast.makeText(getApplicationContext(),"Item 2 Selected", Toast.LENGTH_LONG).show();
+                return true;
+            case R.id.formateur:
+                RegisterView = new Intent(this,GestionPunissement.class);
+                startActivity(RegisterView);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+
+    }
