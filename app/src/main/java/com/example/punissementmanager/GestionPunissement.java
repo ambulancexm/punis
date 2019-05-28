@@ -40,6 +40,11 @@ public class GestionPunissement extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 
+@Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_punissement, menu);
+        return true;
+    }
 
    // public void addPunissement(){
 

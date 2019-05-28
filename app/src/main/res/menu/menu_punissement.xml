@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:actionbarcompat_mse="http://schemas.android.com/apk/res-auto">
+
+<item android:id="@+id/add_punissement"
+      android:title="Ajouter"
+         actionbarcompat_mse:showAsAction="always"
+      android:icon="@android:drawable/ic_input_add"/>
+
+     <item android:id="@+id/modif_punissement"
+      android:title="Modifier"
+      android:icon="@android:drawable/ic_menu_preferences"
+         actionbarcompat_mse:showAsAction="always"/>
+
+     <item android:id="@+id/delete_punissement"
+      android:title="Modifier"
+      android:icon="@android:drawable/ic_delete"
+         actionbarcompat_mse:showAsAction="always"/>
+
+
+</menu>

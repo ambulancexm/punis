@@ -17,7 +17,7 @@ public class ConnexionActivity extends AppCompatActivity {
     Cursor cursor;
     SQLiteDatabase db;
     DBManager manager;
-
+    Intent RegisterView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,5 +52,48 @@ public class ConnexionActivity extends AppCompatActivity {
     public void onRegisterButton(View view){
         Intent RegisterView = new Intent(this,ListCheckedActivity.class);
         startActivity(RegisterView);
+    }
+
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_test, menu);
+        return true;
+    }
+
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        int id = item.getItemId();
+
+
+        switch (id){
+            case R.id.stagiaire:
+                RegisterView = new Intent(this,StagiaireActivity.class);
+                startActivity(RegisterView);
+                return true;
+            case R.id.punis:
+                //RegisterView = new Intent(this,RegisterActivity.class);
+                //startActivity(RegisterView);
+                return true;
+            case R.id.formateur:
+                RegisterView = new Intent(this,GestionPunissement.class);
+                startActivity(RegisterView);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+
+    }
+
+    public void onLoginConnection(View view) {
+        RegisterView = new Intent(getApplicationContext(),StagiaireActivity.class);
+        Log.e("**************** ", "passé!!!");
+        startActivity(RegisterView);
+
+
     }
 }
