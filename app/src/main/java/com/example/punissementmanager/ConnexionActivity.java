@@ -77,7 +77,7 @@ public class ConnexionActivity extends AppCompatActivity {
 
         switch (id){
             case R.id.stagiaire:
-                RegisterView = new Intent(getApplicationContext(),StagiaireActivity.class);
+                RegisterView = new Intent(this,StagiaireActivity.class);
                 startActivity(RegisterView);
                 return true;
             case R.id.punis:

@@ -6,6 +6,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 
 import com.bdd.DBManager;
+import com.example.punissementmanager.ApplicationManager;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -37,6 +38,8 @@ public class Stagiaire implements Serializable {
         this.session_id = session_id;
         this.puni = puni;
     }
+
+
 
     public int getId() {
         return id;

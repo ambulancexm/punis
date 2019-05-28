@@ -24,7 +24,8 @@ public class MyViewHolder extends RecyclerView.ViewHolder {
     public MyViewHolder(View itemView) {
         super(itemView);
 
-
+        nom = (TextView) itemView.findViewById(R.id.textNomStagiaire);
+        prenom = (TextView) itemView.findViewById(R.id.textPrenomStagiare);
     }
 
     //puis ajouter une fonction pour remplir la cellule en fonction d'un CapitalObject
@@ -33,8 +34,8 @@ public class MyViewHolder extends RecyclerView.ViewHolder {
         nom.setText(StagiaireObject.getNom());
         prenom.setText(StagiaireObject.getPrenom());
         //photo.setBytes(StagiaireObject.getImage());
-        email.setText(StagiaireObject.getEmail());
-        telephone.setText(StagiaireObject.getTelephone());
+        //email.setText(StagiaireObject.getEmail());
+        //telephone.setText(StagiaireObject.getTelephone());
         //session_id.intValue(StagiaireObject.getSession_id());
 
     }

@@ -21,7 +21,7 @@
         <activity
             android:theme="@style/AppTheme"
             android:label="Stagiaire"
-            android:name=".StagiaireActivity"></activity> -->
+            android:name=".StagiaireActivity"></activity>
         <activity
 
             android:name=".ConnexionActivity">
