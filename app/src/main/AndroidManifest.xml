@@ -11,6 +11,7 @@
         android:theme="@style/Theme.AppCompat.Light">
         <activity android:name=".GestionPunissement"></activity>
         <activity android:name=".ListActivity"></activity>
+        <activity android:name=".ListCheckedActivity"></activity>
         <activity android:name=".CalendarActivity" />
         <activity android:name=".PunissementActivity" />
         <activity android:name=".StagiaireActivity"></activity>

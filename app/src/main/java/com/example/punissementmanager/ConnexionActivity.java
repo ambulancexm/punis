@@ -50,7 +50,7 @@ public class ConnexionActivity extends AppCompatActivity {
     }
 
     public void onRegisterButton(View view){
-        Intent RegisterView = new Intent(this,ListActivity.class);
+        Intent RegisterView = new Intent(this,ListCheckedActivity.class);
         startActivity(RegisterView);
     }
 }

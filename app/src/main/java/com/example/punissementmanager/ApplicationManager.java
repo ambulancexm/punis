@@ -25,6 +25,8 @@ public class ApplicationManager {
 
     private Formateur formateurConnect;
 
+    public Stagiaire StagiaireSelectionner = new Stagiaire();
+
     public static ApplicationManager getInstance() {
         if (applicationManager == null) {
             applicationManager = new ApplicationManager();

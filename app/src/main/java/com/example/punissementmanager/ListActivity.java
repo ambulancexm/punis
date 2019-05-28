@@ -16,6 +16,7 @@ public class ListActivity extends AppCompatActivity {
 
     private LinkedHashMap<String, GroupInfo> team = new LinkedHashMap<String, GroupInfo>();
     private ArrayList<GroupInfo> deptList = new ArrayList<GroupInfo>();
+    private ArrayList<Session> ListSession = ApplicationManager.getInstance().ListSession();
 
     private CustomAdapterStagiaire listAdapter;
     private ExpandableListView simpleExpandableListView;
@@ -49,9 +50,13 @@ public class ListActivity extends AppCompatActivity {
             //display it or do something with it
             /*Toast.makeText(getBaseContext(), " Team And Player :: " + headerInfo.getName()
                     + "/" + detailInfo.getName(), Toast.LENGTH_LONG).show();*/
+
+            int stagID = ListSession.get(groupPosition).getStagiairesIDS().get(childPosition);
+            Stagiaire stag = ApplicationManager.getInstance().CreerStagiaire(stagID);
             Intent DetailStagiaire = new Intent(ListActivity.this, StagiaireActivity.class);
-            DetailStagiaire.putExtra(stagiaire, tab[i]);
+            ApplicationManager.getInstance().StagiaireSelectionner = stag;
             startActivity(DetailStagiaire);
+
             return false;
         }
     });
@@ -70,23 +75,12 @@ public class ListActivity extends AppCompatActivity {
     // load some initial data into out list
     private void loadData() {
 
-        ArrayList<Session> ListSession = ApplicationManager.getInstance().ListSession();
-
         for (Session S:ListSession){
             for(Integer T:S.getStagiairesIDS()){
                 Stagiaire stag = ApplicationManager.getInstance().CreerStagiaire(T);
                 addProduct(S.getNom(),stag.getPrenom() + " " + stag.getNom());
             }
         }
-
-        /*addProduct("Développeur", "Thomas Béréziat");
-        addProduct("Développeur", "Pauline Cannillo");
-        addProduct("Développeur", "Sonia Chargé");
-        addProduct("Développeur", "Nicolas Rault");
-
-        addProduct("Concepteur", "Thierry Ferreira");
-        addProduct("Concepteur", "Cyril Van Loo");*/
-
     }
 
     // here we maintain team and player names

@@ -26,7 +26,7 @@ public class ListCheckedActivity extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_list);
+        setContentView(R.layout.activity_list_checked);
 
         // add data for displaying in expandable list view
         loadData();
@@ -49,9 +49,9 @@ public class ListCheckedActivity extends AppCompatActivity {
                 //display it or do something with it
             /*Toast.makeText(getBaseContext(), " Team And Player :: " + headerInfo.getName()
                     + "/" + detailInfo.getName(), Toast.LENGTH_LONG).show();*/
-                Intent DetailStagiaire = new Intent(ListCheckedActivity.this, StagiaireActivity.class);
-                DetailStagiaire.putExtra(stagiaire, tab[i]);
-                startActivity(DetailStagiaire);
+                //Intent DetailStagiaire = new Intent(ListCheckedActivity.this, StagiaireActivity.class);
+                //DetailStagiaire.putExtra(stagiaire, tab[i]);
+                //startActivity(DetailStagiaire);
                 return false;
             }
         });

@@ -30,9 +30,10 @@ public class MyViewHolderStagiaire extends RecyclerView.ViewHolder {
     }
 
     public void bind(Stagiaire StagiaireObject) {
-        prenom.setText(StagiaireObject.getPrenom());
-        nom.setText(StagiaireObject.getNom());
-        telephone.setText(StagiaireObject.getTelephone());
-        email.setText(StagiaireObject.getEmail());
+        Stagiaire stag = ApplicationManager.getInstance().StagiaireSelectionner;
+        prenom.setText(stag.getPrenom());
+        nom.setText(stag.getNom());
+        telephone.setText(stag.getTelephone());
+        email.setText(stag.getEmail());
     }
 }

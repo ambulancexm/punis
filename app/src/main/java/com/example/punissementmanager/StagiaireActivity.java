@@ -13,14 +13,22 @@ public class StagiaireActivity extends AppCompatActivity {
 
     final String stagiaire=null;
     private TextView nomStagiaire;
+    private TextView prenomStagiaire;
+    private TextView telephoneStagiaire;
+    private TextView emailStagiaire;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.detail_stagiaire);
-        Intent intent = getIntent();
         nomStagiaire = (TextView) findViewById(R.id.Nom_Stagiaire);
-        nomStagiaire.setText(intent.getStringExtra(stagiaire));
+        nomStagiaire.setText(ApplicationManager.getInstance().StagiaireSelectionner.getNom());
+        prenomStagiaire = (TextView) findViewById(R.id.Prenom_Stagiaire);
+        prenomStagiaire.setText(ApplicationManager.getInstance().StagiaireSelectionner.getPrenom());
+        telephoneStagiaire = (TextView) findViewById(R.id.Telephone_Stagiaire);
+        telephoneStagiaire.setText(ApplicationManager.getInstance().StagiaireSelectionner.getTelephone());
+        emailStagiaire = (TextView) findViewById(R.id.Email_Stagiaire);
+        emailStagiaire.setText(ApplicationManager.getInstance().StagiaireSelectionner.getEmail());
     }
 
     @Override
