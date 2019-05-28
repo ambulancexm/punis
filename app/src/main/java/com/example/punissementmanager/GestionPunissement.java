@@ -9,6 +9,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.Menu;
+import android.view.View;
 
 import com.objetsjava.Punissement;
 
@@ -47,9 +48,9 @@ public class GestionPunissement extends AppCompatActivity {
         return true;
     }
 
-    public void addPunissement(){
+    public void addPunissement(View view){
 
-        Intent testView = new Intent(GestionPunissement.this.getApplicationContext(), FormulairePunissement.class);
+        Intent testView = new Intent(GestionPunissement.this, FormulairePunissement.class);
         startActivity(testView);
     }
 }
