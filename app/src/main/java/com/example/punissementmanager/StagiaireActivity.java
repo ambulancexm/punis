@@ -37,18 +37,6 @@ public class StagiaireActivity extends AppCompatActivity {
         emailStagiaire.setText(ApplicationManager.getInstance().StagiaireSelectionner.getEmail());
     }
 
-        // objet. initialisation
-        recyclerView = findViewById(R.id.recyclerView);
-        int displayMode = res.getConfiguration().orientation;
-
-        // transformer avec le stagiaire
-        /*capitalsList = CapitalObject.getCapitalsList();
-        myAdapter = new MyAdapter(capitalsList);
-        recyclerView.setAdapter(myAdapter);
-        ListSession.get(groupPosition).getStagiairesIDS().get(childPosition);
-*/
-        }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

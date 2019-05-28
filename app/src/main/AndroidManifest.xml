@@ -28,11 +28,14 @@
             android:theme="@style/Theme.AppCompat.Light"
             android:label="Stagiaire"
             android:name=".StagiaireActivity"></activity>
-        <activity
 
-            android:name=".ConnexionActivity">
         <activity android:name=".ListActivity"></activity>
         <activity android:name=".ListCheckedActivity"></activity>
+        <activity android:name=".FormulairePunissement"></activity>
+
+        <activity
+            android:name=".ConnexionActivity">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

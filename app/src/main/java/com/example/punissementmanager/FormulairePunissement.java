@@ -19,7 +19,7 @@ public class FormulairePunissement extends Activity {
         setContentView(R.layout.formulaire_punition);
 
         spinner = (Spinner) findViewById(R.id.spinner);
-        List exempleList = new ArrayList();
+        ArrayList<Object> exempleList = new ArrayList();
 
         exempleList.add("Plat salé");
         exempleList.add("Plat sucré");
