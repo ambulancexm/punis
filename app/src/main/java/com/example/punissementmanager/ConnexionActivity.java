@@ -5,14 +5,12 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.bdd.DBManager;
-import com.objetsjava.Formateur;
 
 public class ConnexionActivity extends AppCompatActivity {
 
@@ -52,7 +50,7 @@ public class ConnexionActivity extends AppCompatActivity {
     }
 
     public void onRegisterButton(View view){
-        Intent RegisterView = new Intent(this,RegisterActivity.class);
+        Intent RegisterView = new Intent(this,ListCheckedActivity.class);
         startActivity(RegisterView);
     }
 }

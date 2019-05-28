@@ -1,25 +1,33 @@
 package com.example.punissementmanager;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ExpandableListView;
 
+import com.objetsjava.Session;
+import com.objetsjava.Stagiaire;
+
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
-public class MainActivity extends AppCompatActivity {
+public class ListActivity extends AppCompatActivity {
 
     private LinkedHashMap<String, GroupInfo> team = new LinkedHashMap<String, GroupInfo>();
     private ArrayList<GroupInfo> deptList = new ArrayList<GroupInfo>();
+    private ArrayList<Session> ListSession = ApplicationManager.getInstance().ListSession();
 
-    private CustomAdapter listAdapter;
+    private CustomAdapterStagiaire listAdapter;
     private ExpandableListView simpleExpandableListView;
+
+    private static final String stagiaire=null;
+    String[] tab;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_list);
 
         // add data for displaying in expandable list view
     loadData();
@@ -27,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
     //get reference of the ExpandableListView
     simpleExpandableListView = (ExpandableListView) findViewById(R.id.simpleExpandableListView);
     // create the adapter by passing your ArrayList data
-    listAdapter = new CustomAdapter(MainActivity.this, deptList);
+    listAdapter = new CustomAdapterStagiaire(ListActivity.this, deptList);
     // attach the adapter to the expandable list view
         simpleExpandableListView.setAdapter(listAdapter);
 
@@ -42,6 +50,13 @@ public class MainActivity extends AppCompatActivity {
             //display it or do something with it
             /*Toast.makeText(getBaseContext(), " Team And Player :: " + headerInfo.getName()
                     + "/" + detailInfo.getName(), Toast.LENGTH_LONG).show();*/
+
+            int stagID = ListSession.get(groupPosition).getStagiairesIDS().get(childPosition);
+            Stagiaire stag = ApplicationManager.getInstance().CreerStagiaire(stagID);
+            Intent DetailStagiaire = new Intent(ListActivity.this, StagiaireActivity.class);
+            ApplicationManager.getInstance().StagiaireSelectionner = stag;
+            startActivity(DetailStagiaire);
+
             return false;
         }
     });
@@ -60,14 +75,12 @@ public class MainActivity extends AppCompatActivity {
     // load some initial data into out list
     private void loadData() {
 
-        addProduct("Développeur", "Thomas Béréziat");
-        addProduct("Développeur", "Pauline Cannillo");
-        addProduct("Développeur", "Sonia Chargé");
-        addProduct("Développeur", "Nicolas Rault");
-
-        addProduct("Concepteur", "Thierry Ferreira");
-        addProduct("Concepteur", "Cyril Van Loo");
-
+        for (Session S:ListSession){
+            for(Integer T:S.getStagiairesIDS()){
+                Stagiaire stag = ApplicationManager.getInstance().CreerStagiaire(T);
+                addProduct(S.getNom(),stag.getPrenom() + " " + stag.getNom());
+            }
+        }
     }
 
     // here we maintain team and player names
