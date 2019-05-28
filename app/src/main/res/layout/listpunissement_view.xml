@@ -7,7 +7,7 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/nomPunissement"
+        android:id="@+id/nom_punissement"
         android:layout_width="129dp"
         android:layout_height="33dp"
         android:layout_marginStart="8dp"
@@ -22,7 +22,7 @@
         app:layout_constraintVertical_bias="0.282" />
 
     <TextView
-        android:id="@+id/datePunissement"
+        android:id="@+id/date_punissement"
         android:layout_width="141dp"
         android:layout_height="34dp"
         android:layout_marginStart="8dp"
@@ -38,7 +38,7 @@
         app:layout_constraintVertical_bias="0.106" />
 
     <TextView
-        android:id="@+id/lieuPunissement"
+        android:id="@+id/lieu_punissement"
         android:layout_width="125dp"
         android:layout_height="27dp"
         android:layout_marginStart="8dp"

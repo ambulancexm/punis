@@ -10,7 +10,7 @@ import com.objetsjava.Punissement;
 
 import java.util.List;
 
-public class MyAdapteurPunissement extends RecyclerView.Adapter<MyViewHolder>{
+public class MyAdapteurPunissement extends RecyclerView.Adapter<MyPunissementHolder>{
 
     List<Punissement> punissementList;
 
@@ -18,13 +18,13 @@ public class MyAdapteurPunissement extends RecyclerView.Adapter<MyViewHolder>{
         this.punissementList = punissementList;
     }
 
-    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int itemType) {
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.listPunissement_view,viewGroup,false);
-        return new MyViewHolder(view);
+    public MyPunissementHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int itemType) {
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.listpunissement_view,viewGroup,false);
+        return new MyPunissementHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder myViewHolder, int position) {
+    public void onBindViewHolder(@NonNull MyPunissementHolder myViewHolder, int position) {
 
         Punissement punissementObject = punissementList.get(position);
         myViewHolder.bind(punissementObject);
