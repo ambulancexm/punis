@@ -5,21 +5,27 @@
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="punishement"
+        android:label="Test"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".GestionPunissement"></activity>
+        android:theme="@style/Theme.AppCompat.Light">
+        <!--android:theme="@style/Theme.AppCompat.Light.NoActionBar"-->
+
+
         <activity
-            android:theme="@style/AppTheme"
+            android:theme="@style/Theme.AppCompat.Light"
+            android:label="Punissement"
+            android:name=".GestionPunissement"></activity>
+        <activity
+            android:theme="@style/Theme.AppCompat.Light"
             android:label="Calendrier"
             android:name=".CalendarActivity" />
         <activity
-            android:theme="@style/AppTheme"
+            android:theme="@style/Theme.AppCompat.Light"
             android:label="Punissement"
             android:name=".PunissementActivity" />
         <activity
-            android:theme="@style/AppTheme"
+            android:theme="@style/Theme.AppCompat.Light"
             android:label="Stagiaire"
             android:name=".StagiaireActivity"></activity>
         <activity

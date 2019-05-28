@@ -26,7 +26,7 @@ public class GestionPunissement extends AppCompatActivity {
 
 @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_test, menu);
+        getMenuInflater().inflate(R.menu.menu_punissement, menu);
         return true;
     }
 
@@ -39,15 +39,15 @@ public class GestionPunissement extends AppCompatActivity {
 
 
         switch (id){
-            case R.id.stagiaire:
+            case R.id.add_punissement:
                 RegisterView = new Intent(this,StagiaireActivity.class);
                 startActivity(RegisterView);
                 return true;
-            case R.id.punis:
+            case R.id.modif_punissement:
                 RegisterView = new Intent(this,RegisterActivity.class);
                 startActivity(RegisterView);
                 return true;
-            case R.id.formateur:
+            case R.id.delete_punissement:
                 RegisterView = new Intent(this,GestionPunissement.class);
                 startActivity(RegisterView);
                 return true;

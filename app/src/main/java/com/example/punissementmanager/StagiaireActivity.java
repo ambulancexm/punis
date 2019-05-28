@@ -59,7 +59,9 @@ public class StagiaireActivity extends AppCompatActivity {
             case R.id.modif_stagiaire:
                 Toast.makeText(getApplicationContext(),"Item 2 Selected", Toast.LENGTH_LONG).show();
                 return true;
-
+            case R.id.delete_stagiaire:
+                Toast.makeText(getApplicationContext(),"Item 3 Selected", Toast.LENGTH_LONG).show();
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
